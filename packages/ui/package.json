@@ -1,4 +1,9 @@
 {
   "name": "@atomic-web/UI",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "dependencies": {
+    "grommet": "^2.21.0",
+    "grommet-icons": "^4.7.0",
+    "remeda": "^0.0.32"
+  }
 }
