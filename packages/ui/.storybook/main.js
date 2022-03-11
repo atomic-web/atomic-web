@@ -11,7 +11,11 @@ module.exports = {
     '../src/lib/**/*.stories.@(js|jsx|ts|tsx)',
     '../**/stories/*.@(ts|tsx|js|jsx)',
   ],
-  addons: [...rootMain.addons, '@nrwl/react/plugins/storybook'],
+  addons: [
+    ...rootMain.addons,
+    '@nrwl/react/plugins/storybook',
+    '@storybook/addon-toolbars',
+  ],
   webpackFinal: async (config, { configType }) => {
     // apply any global webpack configs that might have been specified in .storybook/main.js
     if (rootMain.webpackFinal) {

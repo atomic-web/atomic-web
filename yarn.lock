@@ -8397,6 +8397,11 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.9.tgz#041b05df45755e587a24942279b9d113146e1c96"
   integrity sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==
 
+grommet-theme-hpe@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/grommet-theme-hpe/-/grommet-theme-hpe-2.3.0.tgz#831e7dd233f559d4df5e3068401eab8206563a0b"
+  integrity sha512-NxbeyRySFVDqY+h9iOApic7jP97Xf2hZQaRqIlfaK7KYisaz7Qa1/vONukN1BDVwBQRGLuvKBoOdJ22/rkM+4g==
+
 handle-thing@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/handle-thing/-/handle-thing-2.0.1.tgz#857f79ce359580c340d43081cc648970d0bb234e"
