@@ -1,8 +1,6 @@
 import { Grommet, Box, grommet } from 'grommet';
-import {hpe} from "grommet-theme-hpe/dist/es6/themes/hpe";
 
 const THEMES = {
-  hpe,
   grommet,
   base: {},
 };
