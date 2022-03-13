@@ -29,7 +29,7 @@ const OverflowNav= forwardRef<HTMLDivElement,OverflowNavProps>((props,ref) => {
     direction
   );
 
-  let [overflowItems, setOverflowItems] = useState<OverflowNavItem[]>([]);
+  const [overflowItems, setOverflowItems] = useState<OverflowNavItem[]>([]);
   const themeContext: any = useContext(ThemeContext);
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -54,12 +54,12 @@ const OverflowNav= forwardRef<HTMLDivElement,OverflowNavProps>((props,ref) => {
 
   const renderItem = (item: OverflowNavItem) => (
     <StyledOverflowNavItem
-      key={item._id!}
+      key={item._id}
       direction="row"
       align="center"
       fill={isHorizontal ? 'horizontal' : 'vertical'}
       className="overflow-nav-item"
-      data-item-id={item._id!}
+      data-item-id={item._id}
       onClick={item.onClick}
       tag={item.tag ?? itemTag ?? 'li'}
       pad={plain ? undefined : 'small'}
@@ -70,7 +70,6 @@ const OverflowNav= forwardRef<HTMLDivElement,OverflowNavProps>((props,ref) => {
         <StyledOverflowNavItemLink
           tag={item.link ? Anchor : React.Fragment}
           direction="row"
-          //@ts-ignore
           target={item.target}
           href={item.link}
         >
@@ -95,6 +94,8 @@ const OverflowNav= forwardRef<HTMLDivElement,OverflowNavProps>((props,ref) => {
   }, [overflowItems]);
 
   useEffect(() => {
+    let observer: IntersectionObserver;
+
     if (localItems) {
       const handleObservation = (entries: IntersectionObserverEntry[]) => {
         entries.forEach(({ intersectionRatio, target }) => {
@@ -119,7 +120,6 @@ const OverflowNav= forwardRef<HTMLDivElement,OverflowNavProps>((props,ref) => {
         });
       };
 
-      var observer: IntersectionObserver;
       if (containerRef.current) {
         const container = containerRef.current;
         observer = new IntersectionObserver(handleObservation, {
@@ -161,6 +161,7 @@ const OverflowNav= forwardRef<HTMLDivElement,OverflowNavProps>((props,ref) => {
         ref={containerRef}
         justify="start"
         tag={tag ?? 'ul'}
+        role="menu"
         flex
       >
         {localItems.map((item) => renderItem(item))}
