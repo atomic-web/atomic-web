@@ -11,6 +11,9 @@ import {
 import { sortBy, uniqBy } from 'remeda';
 import { Anchor, Menu, ThemeContext } from 'grommet';
 import { More } from 'grommet-icons';
+import { ReactElement } from 'react';
+import { PolymorphicType } from 'grommet/utils';
+import { ThemeType } from '../../shared/types/theme';
 
 const OverflowNav= forwardRef<HTMLDivElement,OverflowNavProps>((props,ref) => {
   const {
@@ -30,7 +33,7 @@ const OverflowNav= forwardRef<HTMLDivElement,OverflowNavProps>((props,ref) => {
   );
 
   const [overflowItems, setOverflowItems] = useState<OverflowNavItem[]>([]);
-  const themeContext: any = useContext(ThemeContext);
+  const themeContext: ThemeType = useContext(ThemeContext);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -42,10 +45,11 @@ const OverflowNav= forwardRef<HTMLDivElement,OverflowNavProps>((props,ref) => {
       }
     });
 
-    return sortBy(items, [(i) => i.order!, 'asc']);
+    return sortBy(items, [i => i.order as number, 'asc']);
   }, [items]);
 
-  const renderIcon = (icon: any) =>
+  const renderIcon = (icon?: ReactElement | string | PolymorphicType) =>
+    !icon ? undefined:
     React.isValidElement(icon) || typeof icon === 'string' ? (
       <StyledOverflowNavItemIcon>{icon}</StyledOverflowNavItemIcon>
     ) : (
@@ -89,7 +93,7 @@ const OverflowNav= forwardRef<HTMLDivElement,OverflowNavProps>((props,ref) => {
         })),
         (item) => item._id
       ),
-      [(item) => item.order!, 'asc']
+      [(item) => item.order as number, 'asc']
     );
   }, [overflowItems]);
 

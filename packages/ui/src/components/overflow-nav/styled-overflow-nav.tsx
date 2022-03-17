@@ -1,5 +1,6 @@
-import { Box } from 'grommet';
+import { Box, BoxProps } from 'grommet';
 import styled from 'styled-components';
+import { AnchorHTMLAttributes } from 'react';
 
 export const StyledOverflowNav = styled(Box)`
   margin: 0;
@@ -22,7 +23,7 @@ export const StyledOverflowNavItem = styled(Box)`
 
 export const StyledOverflowNavItemLink = styled(Box).attrs({
   direction: 'row',
-})``;
+})<BoxProps & AnchorHTMLAttributes<unknown>>``;
 
 export const StyledOverflowNavItemIcon = styled(Box)`
   stroke: green;
