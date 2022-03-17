@@ -4,7 +4,10 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "rules": {}
+      "rules": {
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn"
+      }
     },
     {
       "files": ["*.ts", "*.tsx"],

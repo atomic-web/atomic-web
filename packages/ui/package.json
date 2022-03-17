@@ -7,6 +7,7 @@
     "remeda": "^0.0.32"
   },
   "devDependencies": {
-    "@storybook/addon-toolbars": "^6.4.19"
+    "@storybook/addon-toolbars": "^6.4.19",
+    "eslint-plugin-react-hooks": "^4.3.0"
   }
 }
