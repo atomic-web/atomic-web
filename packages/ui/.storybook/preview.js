@@ -1,4 +1,4 @@
-import { Grommet, Box, grommet } from 'grommet';
+import { Grommet, grommet } from 'grommet';
 
 const THEMES = {
   grommet,
@@ -42,3 +42,8 @@ export const globalTypes = {
     },
   },
 };
+
+
+export const parameters = {
+  layout :"fullscreen"
+}
