@@ -8,12 +8,11 @@ const THEMES = {
 export const decorators = [
   (Story, state) => {
     const { theme , dir } = state.globals;
+    const {full} = state.args;
 
     return (
-      <Grommet theme={theme} dir={dir}>
-        <Box>
+      <Grommet theme={theme} dir={dir} full={full}>
           <Story />
-        </Box>
       </Grommet>
     );
   },
