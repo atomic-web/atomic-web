@@ -7,12 +7,16 @@ const THEMES = {
 
 export const decorators = [
   (Story, state) => {
-    const { theme , dir } = state.globals;
-    const {full} = state.args;
+    const { theme, dir } = state.globals;
+    const { full } = state.args;
 
     return (
-      <Grommet theme={theme} dir={dir} full={full}>
-          <Story />
+      <Grommet
+        theme={THEMES[theme]}
+        dir={dir === '' ? undefined : dir}
+        full={full}
+      >
+        <Story />
       </Grommet>
     );
   },
@@ -43,7 +47,6 @@ export const globalTypes = {
   },
 };
 
-
 export const parameters = {
-  layout :"fullscreen"
-}
+  layout: 'fullscreen',
+};
