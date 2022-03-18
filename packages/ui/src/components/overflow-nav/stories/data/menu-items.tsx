@@ -10,9 +10,9 @@ import {
   Firefox,
   Edge
 } from 'grommet-icons';
-import { OverflowNavItem } from '../../types';
+import { OverflowNavItemProps } from '../../types';
 
-const menuItems: OverflowNavItem[] = [
+const menuItems: OverflowNavItemProps[] = [
   {
     icon: Home,
     label: 'Home',

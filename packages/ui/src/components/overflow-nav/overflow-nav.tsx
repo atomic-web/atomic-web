@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useMemo, useRef, useState, forwardRef } from 'react';
-import { OverflowNavItem, OverflowNavProps } from './types';
+import { OverflowNavItemProps, OverflowNavProps } from './types';
 import {
   StyledOverflowNav,
   StyledOverflowNavContainer,
@@ -32,7 +32,7 @@ const OverflowNav= forwardRef<HTMLDivElement,OverflowNavProps>((props,ref) => {
     direction
   );
 
-  const [overflowItems, setOverflowItems] = useState<OverflowNavItem[]>([]);
+  const [overflowItems, setOverflowItems] = useState<OverflowNavItemProps[]>([]);
   const themeContext: ThemeType = useContext(ThemeContext);
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -56,7 +56,7 @@ const OverflowNav= forwardRef<HTMLDivElement,OverflowNavProps>((props,ref) => {
       <StyledOverflowNavItemIcon as={icon}></StyledOverflowNavItemIcon>
     );
 
-  const renderItem = (item: OverflowNavItem) => (
+  const renderItem = (item: OverflowNavItemProps) => (
     <StyledOverflowNavItem
       key={item._id}
       direction="row"
