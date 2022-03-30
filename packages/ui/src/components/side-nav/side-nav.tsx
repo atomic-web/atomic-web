@@ -1,7 +1,7 @@
-import { Box, BoxProps, Collapsible, ThemeContext } from 'grommet';
+import { Box, BoxProps, Collapsible, ThemeContext, Tip } from 'grommet';
 import { FormDown } from 'grommet-icons';
 import { ColorType, WidthType } from 'grommet/utils';
-import { forwardRef, useCallback, useEffect, useState } from 'react';
+import React, { forwardRef, useCallback, useEffect, useState } from 'react';
 import { useRef } from 'react';
 import { createContext, useContext } from 'react';
 import styled from 'styled-components';
@@ -16,6 +16,7 @@ import {
 } from '.';
 import { MenuItemProps } from '../../shared/types/menu-item';
 import { StyledSideNav } from './styled-side-nav';
+import { WrapIf } from '../../shared/components/render-if';
 
 export interface SideNavProps extends BoxProps {
   items: SideNavItemProps[];
@@ -92,10 +93,12 @@ const SideNavItemView = forwardRef<
   } = props;
   const { plain, itemBackground, itemHoverBackground, mini } =
     useContext(SideNavContext);
+
   const context = {
     active,
     level,
   };
+
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     if (onToggle) {
       onToggle();
@@ -106,9 +109,9 @@ const SideNavItemView = forwardRef<
     }
   };
 
-  const classList = [className , 'side-nav-item'];
+  const classList = [className, 'side-nav-item'];
 
-  if (mini){
+  if (mini) {
     classList.push('mini');
   }
 
@@ -135,13 +138,13 @@ const SideNavItemView = forwardRef<
       hoverBackground={itemHoverBackground}
       className={classList.join(' ')}
     >
-      <Box margin={{ end: plain || !icon || mini ? '0' : 'small' }}>
-        {icon}
-      </Box>
+      <Box margin={{ end: plain || !icon || mini ? '0' : 'small' }}>{icon}</Box>
       {showLabel && (
         <>
           <Box flex>
-            <SideNavItemLabel style={{ width: 'fit-content' }}>{label}</SideNavItemLabel>
+            <SideNavItemLabel style={{ width: 'fit-content' }}>
+              {label}
+            </SideNavItemLabel>
           </Box>
           {(Boolean(badge) || hasSubItems) && (
             <Box round="medium" direction="row" align="center">
@@ -230,16 +233,43 @@ const SideNavItem: React.FC<InternalSideNavItemProps> = (props) => {
 
   return (
     <>
-      <SideNavItemView
-        {...props}
-        hasSubItems={Boolean(hasSubItems)}
-        isExpanded={isExpanded}
-        onToggle={handleToggle}
-        showBadge={showBadge}
-        showLabel={showLabel}
-        showSubMenuIcon={showSubMenuIcon}
-        ref={itemRef}
-      />
+      <WrapIf
+        condition={Boolean(mini && level === 1 && !hasSubItems)}
+        wrap={(children) => (
+          <Tip
+            content={
+              <Box
+                margin="small"
+                pad="small"
+                background="light-2"
+                round="xxsmall"
+                elevation="small"
+              >
+                {props.label}
+              </Box>
+            }
+            plain
+            dropProps={{
+              align: dir === 'rtl' ? { right: 'left' } : { left: 'right' },
+            }}
+          >
+            {children}
+          </Tip>
+        )}
+      >
+        <Box>
+          <SideNavItemView
+            {...props}
+            hasSubItems={Boolean(hasSubItems)}
+            isExpanded={isExpanded}
+            onToggle={handleToggle}
+            showBadge={showBadge}
+            showLabel={showLabel}
+            showSubMenuIcon={showSubMenuIcon}
+            ref={itemRef}
+          />
+        </Box>
+      </WrapIf>
       {hasSubItems && (
         <>
           {mini && isHover && itemElement && (
