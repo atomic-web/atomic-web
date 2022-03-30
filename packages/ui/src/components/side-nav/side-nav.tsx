@@ -101,8 +101,10 @@ const SideNavItemView = forwardRef<HTMLDivElement,InternalSideNavItemViewProps>(
     <StyledSideNavItem
       level={level}
       plain={plain}
+      mini={mini}
       direction="row"
       align="center"
+      justify={mini ? "center" : undefined}
       focusIndicator={false}
       pad={plain ? undefined : { vertical: 'small', horizontal: 'small' }}
       onClick={handleClick}
@@ -118,7 +120,7 @@ const SideNavItemView = forwardRef<HTMLDivElement,InternalSideNavItemViewProps>(
       hoverBackground={itemHoverBackground}
       className={`menu-item ${className}`}
     >
-      <Box margin={{ end: plain || !icon ? '0' : 'small' }}> {icon} </Box>
+      <Box margin={{ end: plain || !icon || mini ? '0' : 'small' }}> {icon} </Box>
       {showLabel && (
         <>
           <Box flex>
@@ -284,7 +286,10 @@ const SideNav = forwardRef<HTMLDivElement,SideNavProps>((props,ref) => {
           itemHoverBackground,
           mini,
           plain,
-        }}
+  return (
+    <StyledSideNav {...rest} width={mini ? 'fit-content' : undefined} ref={ref}>
+      <SideNavContext.Provider
+        value={contextValue}
       >
         {header && (
           <StyledSideNavHeader pad={!plain ? 'medium' : undefined}>

@@ -8,13 +8,13 @@ export const StyledSideNav = styled(Box)``;
 
 export const StyledSideNavItem = styled(Box).attrs({
   flex: false,
-})<{ hoverBackground: ColorType; level: number; plain?: boolean }>`
+})<{ hoverBackground: ColorType; level: number; plain?: boolean , mini? : boolean }>`
   &:hover *:not(.menuitem) svg {
     stroke: ${(props) =>
       backgroundAndTextColors(props.hoverBackground, null, props.theme)[1]};
   }
-  ${({plain,level}) =>
-    !plain && `padding-inline-start: ${level}rem;`
+  ${({plain,level , mini}) =>
+    (!plain && !mini) && `padding-inline-start: ${level}rem;`
   }
   user-select: none;
 `;
