@@ -1,12 +1,29 @@
 import { Anchor, Avatar, Box, Button, Text } from 'grommet';
 import { Gremlin, Logout, Menu } from 'grommet-icons';
 import { useState } from 'react';
-import { SideNav } from '..';
+import styled from 'styled-components';
+import { SideNav, StyledSideNavItem } from '..';
 import menuItems from './data';
 
 export default {
   title: 'Navigation/SideNav/Minimized',
 };
+
+const Title = styled(Text)`
+   white-space:nowrap;
+   overflow:hidden;
+`
+
+const StyledSideNav = styled(SideNav)`
+   & ${StyledSideNavItem}.mini svg{
+       padding:10px;
+       background-color:#ddd;
+       border-radius:5px;
+   }
+   & ${StyledSideNavItem}.mini:hover svg{
+       background-color:#f1f1f1;
+   }
+`;
 
 const Minimized = () => {
   const [minimized, updateMinimized] = useState(true);
@@ -18,12 +35,12 @@ const Minimized = () => {
   return (
     <Box direction="row" fill="vertical" align="start">
       <Box fill="vertical" background="light-2" width="fit-content">
-        <SideNav
+        <StyledSideNav
           items={menuItems}
           itemHoverBackground="light-4"
           fill="vertical"
           mini={minimized}
-          miniWidth="100px"
+          miniWidth="80px"
           width="300px"
           header={({ mini }) => (
             <Box>
@@ -32,7 +49,7 @@ const Minimized = () => {
                   <Gremlin />
                 </Avatar>
                 {!mini && (
-                  <Text margin={{ start: 'small' }}> Grommet Admin </Text>
+                  <Title margin={{ start: 'small' }}> Grommet Admin </Title>
                 )}
               </Box>
             </Box>
