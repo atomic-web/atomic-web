@@ -23,10 +23,12 @@ const Minimized = () => {
           itemHoverBackground="light-4"
           fill="vertical"
           mini={minimized}
+          miniWidth="100px"
+          width="300px"
           header={({ mini }) => (
             <Box>
               <Box direction="row" align="center">
-                <Avatar background="brand" size={mini ? 'medium' : 'large'}>
+                <Avatar background="brand" size={mini ? '2em' : 'medium'}>
                   <Gremlin />
                 </Avatar>
                 {!mini && (
