@@ -23,7 +23,7 @@ export const StyledSideNavHeader = styled(Box).attrs({
   align: 'center',
   justify: 'center',
 })`
-   $({plain})=>!plain &&  
+   
 `;
 
 export const StyledSideNavBody = styled(Box).attrs({
