@@ -107,6 +107,7 @@ const SideNavItemView = forwardRef<HTMLDivElement,InternalSideNavItemViewProps>(
       pad={plain ? undefined : { vertical: 'small', horizontal: 'small' }}
       onClick={handleClick}
       ref={ref}
+      flex={false}
       background={
         typeof itemBackground === 'function'
           ? itemBackground(context)
@@ -212,7 +213,7 @@ const SideNavItem: React.FC<InternalSideNavItemProps> = (props) => {
   };
 
   return (
-    <Box>
+    <>
       <SideNavItemView
         {...props}
         hasSubItems={Boolean(hasSubItems)}
@@ -238,8 +239,11 @@ const SideNavItem: React.FC<InternalSideNavItemProps> = (props) => {
                             itemHoverBackground={itemHoverBackground}  />
                   </SideNavPopup>
             }
-            {!mini && <Collapsible open={isExpanded}>
-                 <Box>
+            {!mini && <Box 
+              //@ts-ignore
+              flex={{grow:0 , shrink : isExpanded ? 0 : "initial"}}
+            >
+              <Collapsible open={isExpanded}>                
                    {items.map((item, index) => (
                      <SideNavItem
                        level={level + 1}
@@ -251,12 +255,12 @@ const SideNavItem: React.FC<InternalSideNavItemProps> = (props) => {
                        showSubMenuIcon={true}
                      />
                    ))}
-                 </Box>
                </Collapsible>
+            </Box>
             }
             </>
       )}
-    </Box>
+    </>
   );
 };
 
