@@ -17,7 +17,7 @@ const HeaderAndFooter = () => {
         header={
           <Box background="light-2">
             <Box direction="row" align="center">
-              <Avatar background="brand" size="large">
+              <Avatar background="brand" size="medium">
                 <Gremlin />
               </Avatar>
               <Text margin={{start:"small"}}> Grommet Admin </Text>
