@@ -105,6 +105,12 @@ const SideNavItemView = forwardRef<
     }
   };
 
+  const classList = [className , 'side-nav-item'];
+
+  if (mini){
+    classList.push('mini');
+  }
+
   return (
     <StyledSideNavItem
       level={level}
@@ -126,7 +132,7 @@ const SideNavItemView = forwardRef<
       //@ts-ignore
       kind={itemHoverBackground ? { hover: itemHoverBackground } : undefined}
       hoverBackground={itemHoverBackground}
-      className={`menu-item ${className}`}
+      className={classList.join(' ')}
     >
       <Box margin={{ end: plain || !icon || mini ? '0' : 'small' }}>
         {icon}
