@@ -12,7 +12,7 @@ const CustomSideNav = styled(SideNav).attrs({
     background:'light-2'
 })`
     & ${StyledSideNavItem} {
-        
+        transition : all 0.2s ease-in-out;
     }
 `
 
@@ -24,7 +24,7 @@ const CustomStyling = () => {
          <CustomSideNav 
          items={menuItems} 
          itemBackground="light-2"
-         itemHoverBackground="brand"
+         itemHoverBackground="light-4"
          fill="vertical"
          />
      </Box> 
