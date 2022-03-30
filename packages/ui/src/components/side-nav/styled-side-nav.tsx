@@ -16,6 +16,7 @@ export const StyledSideNavItem = styled(Box).attrs({
   ${({plain,level}) =>
     !plain && `padding-inline-start: ${level}rem;`
   }
+  user-select: none;
 `;
 
 export const StyledSideNavHeader = styled(Box).attrs({
