@@ -16,13 +16,12 @@ import {
 import { MenuItemProps } from '../../shared/types/menu-item';
 import { StyledSideNav } from './styled-side-nav';
 
-
 export interface SideNavProps extends BoxProps {
   items: SideNavItemProps[];
   plain?: boolean;
   mini?: boolean;
-  header?: React.ReactNode;
-  footer?: React.ReactNode;
+  header?: React.ReactNode | ((context : SideNavContextValue) => React.ReactNode);
+  footer?: React.ReactNode | ((context : SideNavContextValue) => React.ReactNode);
   itemBackground?: ColorType | BackgroundSelectorFunc;
   itemHoverBackground?: ColorType;
 }
@@ -81,7 +80,7 @@ const SideNavItemView = forwardRef<HTMLDivElement,InternalSideNavItemViewProps>(
     isExpanded,
     onClick
   } = props;
-  const { plain, itemBackground, itemHoverBackground } =
+  const { plain, itemBackground, itemHoverBackground , mini } =
     useContext(SideNavContext);
   const context = {
     active,
@@ -278,14 +277,13 @@ const SideNav = forwardRef<HTMLDivElement,SideNavProps>((props,ref) => {
     ...rest
   } = props;
 
-  return (
-    <StyledSideNav {...rest} width={mini ? 'fit-content' : undefined} ref={ref}>
-      <SideNavContext.Provider
-        value={{
-          itemBackground,
-          itemHoverBackground,
-          mini,
-          plain,
+  const contextValue = {
+    itemBackground,
+    itemHoverBackground,
+    mini,
+    plain,
+  };
+
   return (
     <StyledSideNav {...rest} width={mini ? 'fit-content' : undefined} ref={ref}>
       <SideNavContext.Provider
@@ -293,7 +291,7 @@ const SideNav = forwardRef<HTMLDivElement,SideNavProps>((props,ref) => {
       >
         {header && (
           <StyledSideNavHeader pad={!plain ? 'medium' : undefined}>
-            {header}
+            {typeof (header) === 'function' ? header(contextValue) : header}
           </StyledSideNavHeader>
         )}
         <StyledSideNavBody>
@@ -307,7 +305,9 @@ const SideNav = forwardRef<HTMLDivElement,SideNavProps>((props,ref) => {
             showSubMenuIcon={!mini} />
           ))}
         </StyledSideNavBody>
-        {footer && <StyledSideNavFooter>{footer}</StyledSideNavFooter>}
+        {footer && <StyledSideNavFooter>{
+            typeof (footer) === 'function' ? footer(contextValue) : footer
+        }</StyledSideNavFooter>}
       </SideNavContext.Provider>
     </StyledSideNav>
   );
