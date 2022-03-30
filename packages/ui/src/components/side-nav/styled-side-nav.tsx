@@ -1,4 +1,4 @@
-import { Box, Drop, ThemeType } from 'grommet';
+import { Box, Drop, Text, ThemeType } from 'grommet';
 import styled, { css, keyframes } from 'styled-components';
 import { ColorType, WidthType } from 'grommet/utils';
 //@ts-ignore
@@ -56,7 +56,6 @@ export const StyledSideNavItem = styled(Box).attrs({
     !plain && !mini && `padding-inline-start: ${level}rem;`}
   user-select: none;
 `;
-
 export const StyledSideNavHeader = styled(Box).attrs({
   align: 'center',
   justify: 'center',
@@ -76,3 +75,7 @@ export const StyledSideNavFooter = styled(Box).attrs({
 export const SideNavPopup = styled(Drop)`
   min-width: fit-content;
 `;
+
+export const SideNavItemLabel = styled(Text)`
+  white-space:nowrap;
+`

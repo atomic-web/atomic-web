@@ -1,4 +1,4 @@
-import { Box, BoxProps, Collapsible, Text, ThemeContext } from 'grommet';
+import { Box, BoxProps, Collapsible, ThemeContext } from 'grommet';
 import { FormDown } from 'grommet-icons';
 import { ColorType, WidthType } from 'grommet/utils';
 import { forwardRef, useCallback, useEffect, useState } from 'react';
@@ -11,6 +11,7 @@ import {
   StyledSideNavFooter,
   StyledSideNavHeader,
   StyledSideNavItem,
+  SideNavItemLabel,
   SideNavPopup,
 } from '.';
 import { MenuItemProps } from '../../shared/types/menu-item';
@@ -140,7 +141,7 @@ const SideNavItemView = forwardRef<
       {showLabel && (
         <>
           <Box flex>
-            <Text style={{ width: 'fit-content' }}>{label}</Text>
+            <SideNavItemLabel style={{ width: 'fit-content' }}>{label}</SideNavItemLabel>
           </Box>
           {(Boolean(badge) || hasSubItems) && (
             <Box round="medium" direction="row" align="center">
