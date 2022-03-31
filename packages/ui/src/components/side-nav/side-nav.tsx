@@ -237,7 +237,7 @@ const SideNavItem: React.FC<InternalSideNavItemProps> = (props) => {
     }
   };
 
-  const isActive = (activeItem && id) && activeItem === id;
+  const isActive = Boolean(activeItem && id) && activeItem === id;
 
   return (
     <>
