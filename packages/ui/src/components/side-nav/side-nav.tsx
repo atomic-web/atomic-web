@@ -35,7 +35,7 @@ export interface SideNavProps extends BoxProps {
   activeItem?: string;
 }
 
-type BackgroundSelectorFunc = (context: { active?: boolean }) => ColorType;
+type BackgroundSelectorFunc = (context: { active?: boolean , level:number , mini?:boolean }) => ColorType;
 
 export interface SideNavItemProps extends MenuItemProps {
   expanded?: boolean;
@@ -99,6 +99,7 @@ const SideNavItemView = forwardRef<
   const context = {
     active,
     level,
+    mini
   };
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
@@ -293,6 +294,8 @@ const SideNavItem: React.FC<InternalSideNavItemProps> = (props) => {
             >
               <SideNav
                 items={items}
+                //@ts-ignore
+                level={level}
                 ref={handleSubMenuRefChange}
                 itemBackground={itemBackground}
                 itemHoverBackground={itemHoverBackground}
@@ -355,6 +358,7 @@ const SideNav = forwardRef<HTMLDivElement, SideNavProps>((props, ref) => {
       mini={mini}
       miniWidth={miniWidth}
       normalWidth={width}
+      className="side-nav"
       ref={ref}
     >
       <SideNavContext.Provider value={contextValue}>
@@ -367,7 +371,8 @@ const SideNav = forwardRef<HTMLDivElement, SideNavProps>((props, ref) => {
           {items.map((item, index) => (
             <SideNavItem
               {...item}
-              level={1}
+              //@ts-ignore
+              level={props.level ?? 1}
               key={index}
               showBadge={!mini}
               showLabel={!mini}
