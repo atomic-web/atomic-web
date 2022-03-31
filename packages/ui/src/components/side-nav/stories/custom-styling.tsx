@@ -21,7 +21,7 @@ const CustomStyling = () => {
     <Box fill="vertical" width="medium">
       <CustomSideNav
         items={menuItems}
-        itemBackground={({ active }) => (active ? 'brand' : 'light-2')}
+        itemBackground={({ active , level}) => (active ? 'brand' : level > 1 ? 'light-3' : 'light-2')}
         itemHoverBackground="light-4"
         activeItem='inbox'
         fill="vertical"
