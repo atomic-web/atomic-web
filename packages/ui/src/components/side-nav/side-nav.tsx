@@ -17,6 +17,7 @@ import {
 import { MenuItemProps } from '../../shared/types/menu-item';
 import { StyledSideNav } from './styled-side-nav';
 import { WrapIf } from '../../shared/components/render-if';
+import { useMemo } from 'react';
 
 export interface SideNavProps extends BoxProps {
   items: SideNavItemProps[];
@@ -35,7 +36,11 @@ export interface SideNavProps extends BoxProps {
   activeItem?: string;
 }
 
-type BackgroundSelectorFunc = (context: { active?: boolean , level:number , mini?:boolean }) => ColorType;
+type BackgroundSelectorFunc = (context: {
+  active?: boolean;
+  level: number;
+  mini?: boolean;
+}) => ColorType;
 
 export interface SideNavItemProps extends MenuItemProps {
   expanded?: boolean;
@@ -51,6 +56,8 @@ interface InternalSideNavItemProps extends SideNavItemProps {
   showSubMenuIcon: boolean;
   showLabel: boolean;
   showBadge: boolean;
+  path?: (string | undefined)[];
+  items?: InternalSideNavItemProps[];
 }
 
 interface InternalSideNavItemViewProps extends InternalSideNavItemProps {
@@ -62,7 +69,7 @@ interface InternalSideNavItemViewProps extends InternalSideNavItemProps {
 interface SideNavContextValue {
   plain?: boolean;
   mini?: boolean;
-  activeItem?: string;
+  activePath?: string[];
   itemBackground?: ColorType | BackgroundSelectorFunc;
   itemHoverBackground?: ColorType;
 }
@@ -71,6 +78,48 @@ const ArrowBox = styled(Box)<{ expanded?: boolean }>`
   transition: transform 0.2s ease-in-out;
   transform: rotate(${(props) => (props.expanded ? '180deg' : '0deg')});
 `;
+
+const makeActivePath = (
+  items: InternalSideNavItemProps[],
+  activeItem: string
+) : string[] => {
+  let nextItems: InternalSideNavItemProps[] | undefined = items;
+  const activePath: string[] = [];
+
+  const firstLevelActive = nextItems.find(
+    (item) => item.id && activeItem && item.id === activeItem
+  );
+
+  if (firstLevelActive?.id) {
+    return [firstLevelActive.id];
+  }
+
+  while (nextItems?.length) {
+    nextItems = nextItems.reduce(
+      (p: InternalSideNavItemProps[], c: InternalSideNavItemProps) => [
+        ...p,
+        ...(c.items ?? []).map((i) => {
+          const cpath = c.path?.length ? [...c.path, c.id] : [c.id];
+          if (i.id && activeItem && i.id === activeItem) {
+            for (const id of cpath) {
+              if (id) {
+                activePath.push(id);
+              }
+            }
+
+            activePath.push(i.id);
+          }
+          return {
+            ...i,
+            path: cpath,
+          };
+        }),
+      ],
+      []
+    );
+  }
+  return activePath;
+};
 
 const SideNavContext = createContext<SideNavContextValue>({});
 
@@ -99,7 +148,7 @@ const SideNavItemView = forwardRef<
   const context = {
     active,
     level,
-    mini
+    mini,
   };
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
@@ -168,9 +217,9 @@ const SideNavItemView = forwardRef<
 });
 
 const SideNavItem: React.FC<InternalSideNavItemProps> = (props) => {
-  const { expanded, items, level, showBadge, showLabel, showSubMenuIcon,id } =
+  const { expanded, items, level, showBadge, showLabel, showSubMenuIcon, id } =
     props;
-  const { mini, itemBackground, itemHoverBackground,activeItem } =
+  const { mini, itemBackground, itemHoverBackground, activePath } =
     useContext(SideNavContext);
   const [isExpanded, setExpanded] = useState(expanded);
   const [isHover, updateIsHover] = useState(false);
@@ -238,7 +287,7 @@ const SideNavItem: React.FC<InternalSideNavItemProps> = (props) => {
     }
   };
 
-  const isActive = Boolean(activeItem && id) && activeItem === id;
+  const isActive = id ? activePath?.includes(id) : false;
 
   return (
     <>
@@ -311,8 +360,9 @@ const SideNavItem: React.FC<InternalSideNavItemProps> = (props) => {
               <Collapsible open={isExpanded}>
                 {items.map((item, index) => (
                   <SideNavItem
-                    level={level + 1}
                     {...item}
+                    //@ts-ignore
+                    level={level + 1}
                     isSubItem={true}
                     key={index}
                     showBadge={true}
@@ -344,10 +394,18 @@ const SideNav = forwardRef<HTMLDivElement, SideNavProps>((props, ref) => {
     ...rest
   } = props;
 
+  const activePath = useMemo(
+    () =>
+      !activeItem
+        ? []
+        : makeActivePath(items as InternalSideNavItemProps[], activeItem),
+    [activeItem, items]
+  );
+
   const contextValue = {
     itemBackground,
     itemHoverBackground,
-    activeItem,
+    activePath,
     mini,
     plain,
   };
@@ -368,7 +426,7 @@ const SideNav = forwardRef<HTMLDivElement, SideNavProps>((props, ref) => {
         <StyledSideNavBody>
           {items.map((item, index) => (
             <SideNavItem
-              {...item}
+              {...(item as InternalSideNavItemProps)}
               //@ts-ignore
               level={props.level ?? 1}
               key={index}
