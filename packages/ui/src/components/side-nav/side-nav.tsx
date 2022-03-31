@@ -304,6 +304,7 @@ const SideNavItem: React.FC<InternalSideNavItemProps> = (props) => {
           )}
           {!mini && (
             <Box
+              className="sub-items"
               //@ts-ignore
               flex={{ grow: 0, shrink: isExpanded ? 0 : 'initial' }}
             >
