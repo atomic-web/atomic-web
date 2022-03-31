@@ -356,9 +356,6 @@ const SideNav = forwardRef<HTMLDivElement, SideNavProps>((props, ref) => {
     <StyledSideNav
       {...rest}
       width={mini ? miniWidth ?? 'fit-content' : width}
-      mini={mini}
-      miniWidth={miniWidth}
-      normalWidth={width}
       className="side-nav"
       ref={ref}
     >

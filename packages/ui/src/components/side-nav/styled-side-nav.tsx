@@ -1,43 +1,12 @@
-import { Box, Drop, Text, ThemeType } from 'grommet';
-import styled, { css, keyframes } from 'styled-components';
-import { ColorType, WidthType } from 'grommet/utils';
+import { Box, Drop, Text } from 'grommet';
+import styled, {  } from 'styled-components';
+import { ColorType } from 'grommet/utils';
 //@ts-ignore
 import { backgroundAndTextColors } from 'grommet/utils/background';
 //@ts-ignore
-import { widthStyle } from 'grommet/utils';
 
-const SideNavAnim = (
-  miniWidth: WidthType,
-  normalWidth: WidthType,
-  theme: ThemeType,
-  mini?: boolean
-) => keyframes`
-   from {
-     ${widthStyle(mini ? normalWidth : miniWidth,theme)};
-   }
-
-   to {
-     ${widthStyle(mini ? miniWidth : normalWidth , theme)};
-   }
-`;
-
-const SideNavAnimStyle = (
-  miniWidth: WidthType,
-  normalWidth: WidthType,
-  theme: ThemeType,
-  mini?: boolean
-) => css`
-  animation: ${SideNavAnim(miniWidth, normalWidth, theme, mini)} 0.2s
-    ease-in-out;
-`;
-
-export const StyledSideNav = styled(Box)<{
-  mini?: boolean;
-  miniWidth: WidthType;
-  normalWidth: WidthType;
-}>`
-  ${({ mini, miniWidth, normalWidth,theme }) =>
-    miniWidth && normalWidth && SideNavAnimStyle(miniWidth, normalWidth,theme, mini)}
+export const StyledSideNav = styled(Box)`
+  transition:width 0.3s ease-in-out;
 `;
 
 export const StyledSideNavItem = styled(Box).attrs({
