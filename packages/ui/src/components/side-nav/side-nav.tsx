@@ -32,6 +32,7 @@ export interface SideNavProps extends BoxProps {
   itemHoverBackground?: ColorType;
   miniWidth?: WidthType;
   width?: WidthType;
+  activeItem?: string;
 }
 
 type BackgroundSelectorFunc = (context: { active?: boolean }) => ColorType;
@@ -61,6 +62,7 @@ interface InternalSideNavItemViewProps extends InternalSideNavItemProps {
 interface SideNavContextValue {
   plain?: boolean;
   mini?: boolean;
+  activeItem?: string;
   itemBackground?: ColorType | BackgroundSelectorFunc;
   itemHoverBackground?: ColorType;
 }
@@ -115,6 +117,10 @@ const SideNavItemView = forwardRef<
     classList.push('mini');
   }
 
+  if (active) {
+    classList.push('active');
+  }
+
   return (
     <StyledSideNavItem
       level={level}
@@ -161,9 +167,9 @@ const SideNavItemView = forwardRef<
 });
 
 const SideNavItem: React.FC<InternalSideNavItemProps> = (props) => {
-  const { expanded, items, level, showBadge, showLabel, showSubMenuIcon } =
+  const { expanded, items, level, showBadge, showLabel, showSubMenuIcon,id } =
     props;
-  const { mini, itemBackground, itemHoverBackground } =
+  const { mini, itemBackground, itemHoverBackground,activeItem } =
     useContext(SideNavContext);
   const [isExpanded, setExpanded] = useState(expanded);
   const [isHover, updateIsHover] = useState(false);
@@ -231,6 +237,8 @@ const SideNavItem: React.FC<InternalSideNavItemProps> = (props) => {
     }
   };
 
+  const isActive = (activeItem && id) && activeItem === id;
+
   return (
     <>
       <WrapIf
@@ -260,6 +268,7 @@ const SideNavItem: React.FC<InternalSideNavItemProps> = (props) => {
         <Box>
           <SideNavItemView
             {...props}
+            active={isActive}
             hasSubItems={Boolean(hasSubItems)}
             isExpanded={isExpanded}
             onToggle={handleToggle}
@@ -325,6 +334,7 @@ const SideNav = forwardRef<HTMLDivElement, SideNavProps>((props, ref) => {
     mini,
     itemBackground,
     itemHoverBackground,
+    activeItem,
     miniWidth,
     width,
     ...rest
@@ -333,6 +343,7 @@ const SideNav = forwardRef<HTMLDivElement, SideNavProps>((props, ref) => {
   const contextValue = {
     itemBackground,
     itemHoverBackground,
+    activeItem,
     mini,
     plain,
   };
