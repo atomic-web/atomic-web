@@ -7,6 +7,12 @@
       "rules": {}
     },
     {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/ban-ts-comment" : "off"
+      }
+    },
+    {
       "files": ["src/plugins/index.js"],
       "rules": {
         "@typescript-eslint/no-var-requires": "off",
