@@ -82,7 +82,7 @@ const ArrowBox = styled(Box)<{ expanded?: boolean }>`
 const makeActivePath = (
   items: InternalSideNavItemProps[],
   activeItem: string
-) : string[] => {
+): string[] => {
   let nextItems: InternalSideNavItemProps[] | undefined = items;
   const activePath: string[] = [];
 
@@ -315,7 +315,7 @@ const SideNavItem: React.FC<InternalSideNavItemProps> = (props) => {
           </Tip>
         )}
       >
-        <Box>
+        <Box flex={{ shrink: 0, grow: 0 }}>
           <SideNavItemView
             {...props}
             active={isActive}
