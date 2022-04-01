@@ -19,4 +19,28 @@ describe('SideNav', () => {
       .first()
       .should('have.css', 'background-color', 'rgb(237, 237, 237)');
   });
+
+  it('Mini Variant', () => {
+    cy.visit(
+      '/iframe.html?id=navigation-sidenav-minimized--minimized'
+    );
+    cy.get('.side-nav')
+      .find('.side-nav-item')
+      .first()
+      .realHover();
+
+    cy.contains('Dashboard');
+
+    cy.get('[aria-label="Menu"]').click();
+
+    cy.get('.side-nav')
+      .should('have.css', 'width', '300px');
+
+    cy.get('[aria-label="Menu"]').click();
+
+    cy.get('.side-nav')
+      .should('have.css', 'width', '80px');
+
+  });
+
 });
