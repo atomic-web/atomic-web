@@ -12,6 +12,7 @@ const ListDevider = (props: Partial<DividerProps>) => (
   <Divider
     orientation="horizontal"
     contentAlign="center"
+    offset="xxsmall"
     border={{ size: 'small', color: 'light-5', style: 'solid' }}
     {...props}
   />
@@ -91,11 +92,7 @@ const Horizontal = () => {
         <LoremIpsum />
         <ListDevider margin={{ vertical: 'medium' }}> CENTER </ListDevider>
         <LoremIpsum />
-        <ListDevider
-          margin={{ vertical: 'medium' }}
-          contentAlign="start"
-          offset="50px"
-        >
+        <ListDevider margin={{ vertical: 'medium' }} contentAlign="start">
           <Box direction="row" align="center">
             <Avatar background="brand">
               <Gremlin />
@@ -104,32 +101,20 @@ const Horizontal = () => {
           </Box>
         </ListDevider>
         <LoremIpsum />
-        <ListDevider
-          margin={{ vertical: 'medium' }}
-          contentAlign="end"
-          offset="50px"
-        >
-           <Box direction="row-reverse" align="center">
+        <ListDevider margin={{ vertical: 'medium' }} contentAlign="end">
+          <Box direction="row-reverse" align="center">
             <Avatar background="light-5">
-              <Folder/>
+              <Folder />
             </Avatar>
             <Text margin={{ horizontal: 'small' }}>END</Text>
           </Box>
         </ListDevider>
         <LoremIpsum />
-        <ListDevider
-          margin={{ vertical: 'medium' }}
-          contentAlign="left"
-          offset="50px"
-        >
+        <ListDevider margin={{ vertical: 'medium' }} contentAlign="left">
           LEFT
         </ListDevider>
         <LoremIpsum />
-        <ListDevider
-          margin={{ vertical: 'medium' }}
-          contentAlign="right"
-          offset="50px"
-        >
+        <ListDevider margin={{ vertical: 'medium' }} contentAlign="right">
           RIGHT
         </ListDevider>
       </Box>

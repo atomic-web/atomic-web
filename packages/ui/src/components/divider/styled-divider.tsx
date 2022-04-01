@@ -4,6 +4,7 @@ import { BorderType, ColorType, WidthType } from 'grommet/utils';
 import { borderStyle } from 'grommet/utils';
 import styled from 'styled-components';
 import { DividerContentAlignType } from '.';
+import { getSize } from '../../utils/theme';
 
 const orderFromAlign = (
   align: DividerContentAlignType = 'start',
@@ -70,26 +71,26 @@ export const StyledDivider = styled(Box).withConfig({
   &:before {
     ${({ contentAlign, offset }) =>
       !offset && contentAlign !== 'center' && 'display:none'};
-    ${({ contentAlign, dir, offset }) =>
+    ${({ contentAlign, dir, offset, theme }) =>
       offset &&
       (contentAlign === 'start' ||
         (dir === 'rtl' && contentAlign === 'right') ||
         (dir !== 'rtl' && contentAlign === 'left')) &&
       `
        flex-grow:0;
-       flex-basis:${offset};
+       flex-basis:${getSize(theme, offset as string)};
     `};
   }
 
   &:after {
-    ${({ contentAlign, dir, offset }) =>
+    ${({ contentAlign, dir, offset, theme }) =>
       offset &&
       (contentAlign === 'end' ||
         (dir !== 'rtl' && contentAlign === 'right') ||
         (dir === 'rtl' && contentAlign === 'left')) &&
       `
        flex-grow:0;
-       flex-basis:${offset};
+       flex-basis:${getSize(theme, offset as string)};
     `};
   }
 
