@@ -1,2 +1,2 @@
-export * from './components/overflow-nav';
+export * from './components';
 export * from "./utils"
