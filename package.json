@@ -2,7 +2,10 @@
   "name": "atomic-web",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build-storybook:ui": "echo $npm_config_output-dir &&  nx run ui:build-storybook -- --output-dir $npm_config_output-dir",
+    "chromatic": "chromatic --project-token=$UI_CHROMATIC_PROJECT_TOKEN --build-script-name=build-storybook:ui"
+  },
   "private": true,
   "dependencies": {
     "core-js": "^3.6.5",
@@ -48,6 +51,7 @@
     "babel-jest": "27.2.3",
     "babel-loader": "8.1.0",
     "babel-plugin-styled-components": "1.10.7",
+    "chromatic": "^6.5.4",
     "cypress": "^9.1.0",
     "cypress-real-events": "^1.7.0",
     "eslint": "~8.7.0",

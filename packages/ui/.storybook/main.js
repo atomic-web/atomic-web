@@ -11,7 +11,6 @@ module.exports = {
   ],
   addons: [
     ...rootMain.addons,
-    '@nrwl/react/plugins/storybook',
     '@storybook/addon-toolbars',
   ],
   webpackFinal: async (config, { configType }) => {
