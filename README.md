@@ -18,8 +18,8 @@ yarn add @atomic-web/ui
 - [x] Overflow Nav
 - [x] Side Nav
 - [x] Divider
+- [x] Toaster 
 - [ ] Session
-- [ ] Toaster 
 - [ ] Modals(Imperative)
 - [ ] Aspect Ratio
 - [ ] Tour Component
