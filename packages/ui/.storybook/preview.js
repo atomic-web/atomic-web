@@ -1,4 +1,5 @@
 import { Grommet, grommet } from 'grommet';
+import { UIProvider } from '../src/components/provider';
 
 const THEMES = {
   grommet,
@@ -16,7 +17,9 @@ export const decorators = [
         dir={dir === '' ? undefined : dir}
         full={full}
       >
-        <Story />
+        <UIProvider>
+          <Story />
+        </UIProvider>
       </Grommet>
     );
   },
