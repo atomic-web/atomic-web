@@ -24,6 +24,7 @@ yarn add @atomic-web/ui
 - [ ] Aspect Ratio
 - [ ] Tour Component
 - [ ] Global Search
+- [ ] Keystroke Visualizer
 
 # Demo
 Demo of main branch for UI project is available [here](https://main--62506fda8097ba003ad6bd16.chromatic.com), the storybook hase toolbar for direction (`RTL`- `LTR`) and theme selection, a dedicated theme is in schedule, onece ready will appear in theme selection list.
