@@ -66,7 +66,7 @@ const hideAnimationMap = {
 };
 
 const toastTypeMap = {
-  info: 'status-unknow',
+  info: 'status-unknown',
   success: 'status-ok',
   error: 'status-error',
   warning: 'status-warning',
