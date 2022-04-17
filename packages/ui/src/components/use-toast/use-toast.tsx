@@ -46,6 +46,8 @@ export type ToastOptions = {
   position?: ToastPosition;
   animationDuration?: number;
   toastDuration?: number;
+  pauseOnHover? : boolean,
+  showProgress? : boolean
 };
 
 const useToast = (options?: ToastOptions) => {
@@ -76,11 +78,9 @@ const useToast = (options?: ToastOptions) => {
     const _id = id ?? getId();
 
     const newToast: Toast = {
-      message: info.message,
-      type: info.type,
+      ...info,
       cancel: () => cancel(_id),
-      options: info.options,
-      actions : info.actions,
+      type: info.type,      
       id: _id,
       visible: true,
       _timer: new Timer(toastDuration, () => {

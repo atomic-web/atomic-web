@@ -66,11 +66,11 @@ const hideAnimationMap = {
 };
 
 const toastTypeMap = {
-   'info' : 'status-unknow',
-   'success' : 'status-ok',
-   error:'status-error',
-   warning : 'status-warning'
-}
+  info: 'status-unknow',
+  success: 'status-ok',
+  error: 'status-error',
+  warning: 'status-warning',
+};
 
 const ShowAnimation = (position: ToastPosition) => keyframes`
    from {
@@ -111,22 +111,23 @@ const ProgressBar = styled(Box)<{
 }>`
   height: 0.5em;
   width: 100%;
-  bottom:0;
-  ${({theme})=>theme.dir === "rtl" ? "right:0" : "left:0"};
+  bottom: 0;
+  ${({ theme }) => (theme.dir === 'rtl' ? 'right:0' : 'left:0')};
   transform: translateY(100%);
-  background: ${({theme})=>normalizeColor("brand",theme)} ;
+  background: ${({ theme }) => normalizeColor('brand', theme)};
   animation: ${ProgressAnimation};
   animation-duration: ${({ duration }) => duration}ms;
-  animation-timing-function:linear;
-  animation-fill-mode:forwards;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
   position: absolute;
-  box-sizing:border-box;
+  box-sizing: border-box;
 `;
 
 const StyledToastItem = styled(Box)<{
   visible: boolean;
   position: ToastPosition;
   animationDuration: number;
+  pauseOnHover: boolean;
 }>`
   animation: ${({ visible, position }) =>
     visible ? ShowAnimation(position) : HideAnimation(position)}};
@@ -137,9 +138,11 @@ const StyledToastItem = styled(Box)<{
   animation-fill-mode:forwards;
   animation-play-state:initial;
   position:relative;
-  &:hover ${ProgressBar}{
+  ${({ pauseOnHover }) =>
+    pauseOnHover &&
+    `&:hover ${ProgressBar}{
     animation-play-state:paused;
-  }
+  }`}
 `;
 
 const ToastItem: React.FC<ToastItemProps> = (props) => {
@@ -159,18 +162,18 @@ const ToastItem: React.FC<ToastItemProps> = (props) => {
       toast._timer?.resume();
     };
 
-    if (toastElement) {
+    if (toastOptions.pauseOnHover && toastElement) {
       toastElement.addEventListener('mouseenter', handleMouseIn);
       toastElement.addEventListener('mouseleave', handleMouseOut);
     }
 
     return () => {
-      if (toastElement) {
+      if (toastOptions.pauseOnHover && toastElement) {
         toastElement.removeEventListener('mouseenter', handleMouseIn);
         toastElement.removeEventListener('mouseleave', handleMouseOut);
       }
     };
-  }, [toast._timer]);
+  }, [toast._timer, toastOptions.pauseOnHover]);
 
   const handleAction = useCallback(
     (handler) => (e: MouseEvent<unknown>) => {
@@ -189,6 +192,7 @@ const ToastItem: React.FC<ToastItemProps> = (props) => {
       background={toastTypeMap[toastOptions.type]}
       animationDuration={toastOptions.animationDuration}
       position={toastOptions.position}
+      pauseOnHover={toastOptions.pauseOnHover}
       flex={false}
     >
       <Box direction="row" align="start">
@@ -219,7 +223,9 @@ const ToastItem: React.FC<ToastItemProps> = (props) => {
           onClick={toast.cancel}
         />
       </Box>
-      <ProgressBar duration={toastOptions.toastDuration} />
+      {toastOptions.showProgress && (
+        <ProgressBar duration={toastOptions.toastDuration} />
+      )}
     </StyledToastItem>
   );
 };

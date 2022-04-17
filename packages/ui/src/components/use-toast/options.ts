@@ -15,12 +15,20 @@ export const useToastOptions = (toast?: Toast): Required<ToastOptions> => {
       animationDuration: toastOptions.animationDuration || 300,
       toastDuration: toastOptions.toastDuration || TOAST_DURATION,
       type: toast?.type ?? toastOptions.type ?? 'info',
+      pauseOnHover:
+        toast?.options?.pauseOnHover ?? toastOptions.pauseOnHover ?? true,
+      showProgress:
+        toast?.options?.showProgress ?? toastOptions.showProgress ?? true,
     };
   }, [
+    toast?.options?.pauseOnHover,
     toast?.options?.position,
+    toast?.options?.showProgress,
     toast?.type,
     toastOptions.animationDuration,
+    toastOptions.pauseOnHover,
     toastOptions.position,
+    toastOptions.showProgress,
     toastOptions.toastDuration,
     toastOptions.type,
   ]);
