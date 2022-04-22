@@ -1,6 +1,8 @@
 import { Box, BoxProps } from 'grommet';
 import styled from 'styled-components';
 import { AnchorHTMLAttributes } from 'react';
+//@ts-ignore
+import { backgroundStyle } from 'grommet/utils/background';
 
 export const StyledOverflowNav = styled(Box)`
   margin: 0;
@@ -19,6 +21,13 @@ export const StyledOverflowNavItem = styled(Box)`
   min-width: fit-content;
   min-height: fit-content;
   width: auto;
+`;
+
+export const StyledOverflowNavOverflowItem = styled(Box)`
+  & > div {
+  ${(props) =>
+      backgroundStyle(props.background, props.theme, props.theme.button.color)};
+  }
 `;
 
 export const StyledOverflowNavItemLink = styled(Box).attrs({

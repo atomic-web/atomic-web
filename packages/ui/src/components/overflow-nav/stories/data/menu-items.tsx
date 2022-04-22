@@ -54,6 +54,7 @@ const menuItems: OverflowNavItemProps[] = [
   {
     icon: Edge,
     label: 'Edge',
+    active:true
   }
 ];
 
