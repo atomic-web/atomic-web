@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { ToastContext } from '../../utils/ui-context';
+import { ToastContext } from './toast-context';
 import { getId } from '../../utils/misc';
 import { Timer } from '../../utils/timer';
 import { MouseEvent } from 'react';
@@ -13,6 +13,9 @@ export interface UseToastParams {
 }
 
 export type ToastType = 'info' | 'success' | 'error' | 'warning';
+export interface AddToastReturn {
+  close: () => void;
+}
 
 export interface UseToastReturn {
   addToast: (info: UseToastParams) => void;
@@ -42,28 +45,34 @@ export type ToastAction = {
 };
 
 export type ToastOptions = {
-  type ?: ToastType,
+  type?: ToastType;
   position?: ToastPosition;
   animationDuration?: number;
   toastDuration?: number;
-  pauseOnHover? : boolean,
-  showProgress? : boolean
+  pauseOnHover?: boolean;
+  showProgress?: boolean;
+  autoClose?: boolean;
 };
 
 const useToast = (options?: ToastOptions) => {
   const { toasts, updateToasts } = useContext(ToastContext);
-  const globalOptions = useToastOptions();
-  const animationDuration =
-    options?.animationDuration ?? globalOptions.animationDuration;
-  const toastDuration = options?.toastDuration ?? globalOptions.toastDuration;
+  const globalOptions = useToastOptions(undefined, options);
+  const animationDuration = globalOptions.animationDuration;
+  const toastDuration = globalOptions.toastDuration;
 
   const cancel = (id: string) => {
     updateToasts((_toasts) =>
-      _toasts.map((toast) =>
-        toast.id === id ? { ...toast, visible: false } : toast
-      )
+      _toasts.map((toast) => {
+        if (toast.id === id) {
+          window.setTimeout(
+            () => removeById(id),
+            toast.options?.animationDuration ?? animationDuration
+          );
+          return { ...toast, visible: false };
+        }
+        return toast;
+      })
     );
-    window.setTimeout(() => removeById(id), animationDuration);
   };
 
   const removeById = (id: string) => {
@@ -75,24 +84,32 @@ const useToast = (options?: ToastOptions) => {
       throw new Error(`Toast with id ${id} already exists`);
     }
 
+    const autoClose = info.options?.autoClose ?? globalOptions.autoClose;
+
     const _id = id ?? getId();
 
     const newToast: Toast = {
       ...info,
       cancel: () => cancel(_id),
-      type: info.type,      
+      type: info.type,
       id: _id,
       visible: true,
-      _timer: new Timer(toastDuration, () => {
-        cancel(_id);
-        if (newToast._timer) {
-          newToast._timer.stop();
-          newToast._timer = null;
-        }
-      }),
+      _timer: autoClose
+        ? new Timer(info.options?.animationDuration ?? toastDuration, () => {
+            cancel(_id);
+            if (newToast._timer) {
+              newToast._timer.stop();
+              newToast._timer = null;
+            }
+          })
+        : null,
     };
 
     updateToasts([...toasts, newToast]);
+
+    return {
+      close: () => cancel(_id),
+    };
   };
 
   return {

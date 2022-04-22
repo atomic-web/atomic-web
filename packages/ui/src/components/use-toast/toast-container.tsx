@@ -2,7 +2,7 @@ import { Box } from 'grommet';
 import { useContext } from 'react';
 import { useMemo } from 'react';
 import styled, { css } from 'styled-components';
-import { ToastContext } from '../../utils/ui-context';
+import { ToastContext } from './toast-context';
 import { ToastItem } from './toast-item';
 import { useToastOptions } from './options';
 import { DirectionType } from 'grommet/utils';

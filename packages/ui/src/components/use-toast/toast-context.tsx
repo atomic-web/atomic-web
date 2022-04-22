@@ -1,11 +1,14 @@
 import React from 'react';
-import { ToastContainer } from '../components/use-toast/toast-container';
-import { Toast,ToastOptions} from '../components/use-toast/use-toast';
+import { ToastContainer } from './toast-container';
+import { Toast,ToastOptions} from './use-toast';
+
+const TOAST_DURATION = 5000;
+const ANIMATION_DURATION = 300;
 
 export interface ToastContextParams {
   toasts: Toast[];
   updateToasts: UpdateToastFunc;
-  toastOptions : ToastOptions
+  toastOptions : Required<ToastOptions>
 }
 
 export type UpdateToastFunc = (
@@ -16,7 +19,13 @@ const defaultValue: ToastContextParams = {
   toasts: [],
   updateToasts: (_: Toast[] | ((prev: Toast[]) => Toast[])) => 0,
   toastOptions : {
-    position : 'top-right'
+    position : 'top-right',
+    animationDuration : ANIMATION_DURATION,
+    autoClose : true,
+    pauseOnHover : true,
+    showProgress : true,
+    toastDuration : TOAST_DURATION,
+    type : 'info'
   }
 };
 

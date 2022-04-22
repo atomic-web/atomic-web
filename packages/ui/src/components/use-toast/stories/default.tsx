@@ -10,9 +10,9 @@ import {
   RadioButtonGroup,
 } from 'grommet';
 import { Gremlin } from 'grommet-icons';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useToast } from '..';
-import { ToastPosition, ToastType } from '../use-toast';
+import { AddToastReturn, ToastPosition, ToastType } from '../use-toast';
 
 export default {
   title: 'DataDisplay/Toast/Default',
@@ -20,9 +20,10 @@ export default {
 
 const Default = () => {
   const { addToast } = useToast({});
+  const toastRef = useRef<AddToastReturn>();
 
   const handleClick = () => {
-    addToast({
+    toastRef.current = addToast({
       message: (
         <Box>
           <Box direction="row" align="center">
@@ -51,8 +52,9 @@ const Default = () => {
       ],
       options: {
         position,
-        pauseOnHover: pauseOnHover,
-        showProgress: showProgress,
+        pauseOnHover,
+        showProgress,
+        autoClose
       },
     });
   };
@@ -61,6 +63,7 @@ const Default = () => {
   const [type, setType] = useState<ToastType>('info');
   const [showProgress, setShowProgress] = useState<boolean>(true);
   const [pauseOnHover, setPauseOnHover] = useState<boolean>(true);
+  const [autoClose, setAutoClose] = useState<boolean>(true);
 
   return (
     <Box fill align="center" justify="center">
@@ -136,22 +139,29 @@ const Default = () => {
               ]}
             />
           </NameValuePair>
-          <NameValuePair name="ShowProgress">
+          <NameValuePair name="Show Progress">
             <CheckBox
               checked={showProgress}
               toggle
               onChange={(e) => setShowProgress(e.target.checked)}
             />
           </NameValuePair>
-          <NameValuePair name="pauseOnHover">
+          <NameValuePair name="Pause On Hover">
             <CheckBox
               checked={pauseOnHover}
               toggle
               onChange={(e) => setPauseOnHover(e.target.checked)}
             />
           </NameValuePair>
+          <NameValuePair name="Auto Close">
+            <CheckBox
+              checked={autoClose}
+              toggle
+              onChange={(e) => setAutoClose(e.target.checked)}
+            />
+          </NameValuePair>
         </NameValueList>
-        <Button label="Show Toast" onClick={handleClick} />
+        <Button label="Show Toast" onClick={handleClick} /> <Button label="Close Latest" onClick={toastRef.current?.close}/>
       </Box>
     </Box>
   );

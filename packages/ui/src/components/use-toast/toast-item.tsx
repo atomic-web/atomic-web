@@ -223,7 +223,7 @@ const ToastItem: React.FC<ToastItemProps> = (props) => {
           onClick={toast.cancel}
         />
       </Box>
-      {toastOptions.showProgress && (
+      {toastOptions.autoClose && toastOptions.showProgress && (
         <ProgressBar duration={toastOptions.toastDuration} />
       )}
     </StyledToastItem>
