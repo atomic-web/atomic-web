@@ -15,5 +15,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-    - run: yarn
+    - run: yarn 
+    - run: npx nx affected --target=test --parallel=3 --ci --code-coverage
     - run: npx nx affected --target=build --parallel=3
