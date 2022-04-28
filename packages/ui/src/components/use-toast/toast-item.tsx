@@ -194,6 +194,8 @@ const ToastItem: React.FC<ToastItemProps> = (props) => {
       position={toastOptions.position}
       pauseOnHover={toastOptions.pauseOnHover}
       flex={false}
+      data-id={toast.id}
+      className="toast-item"
     >
       <Box direction="row" align="start">
         <Box flex>

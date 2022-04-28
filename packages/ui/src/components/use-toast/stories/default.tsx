@@ -18,45 +18,55 @@ export default {
   title: 'DataDisplay/Toast/Default',
 };
 
+const getToastId = (() => {
+  let id = 0;
+  return () => {
+    return ++id;
+  };
+})();
+
 const Default = () => {
   const { addToast } = useToast({});
   const toastRef = useRef<AddToastReturn>();
 
   const handleClick = () => {
-    toastRef.current = addToast({
-      message: (
-        <Box>
-          <Box direction="row" align="center">
-            <Avatar background="accent-3">
-              <Gremlin />
-            </Avatar>
-            <Box margin={{ start: 'small' }}>
-              <Heading level="4" margin={{ vertical: 'small' }}>
-                Toast Title
-              </Heading>
+    toastRef.current = addToast(
+      {
+        message: (
+          <Box>
+            <Box direction="row" align="center">
+              <Avatar background="accent-3">
+                <Gremlin />
+              </Avatar>
+              <Box margin={{ start: 'small' }}>
+                <Heading level="4" margin={{ vertical: 'small' }}>
+                  Toast Title
+                </Heading>
+              </Box>
             </Box>
+            <Paragraph margin="0">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            </Paragraph>
           </Box>
-          <Paragraph margin="0">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          </Paragraph>
-        </Box>
-      ),
-      type,
-      actions: [
-        {
-          content: 'Close',
-          handler: (_, cancel) => {
-            cancel();
+        ),
+        type,
+        actions: [
+          {
+            content: 'Close',
+            handler: (_, cancel) => {
+              cancel();
+            },
           },
+        ],
+        options: {
+          position,
+          pauseOnHover,
+          showProgress,
+          autoClose,
         },
-      ],
-      options: {
-        position,
-        pauseOnHover,
-        showProgress,
-        autoClose
       },
-    });
+      getToastId().toString()
+    );
   };
 
   const [position, setPosition] = useState<ToastPosition>('top-left');
@@ -68,9 +78,7 @@ const Default = () => {
   return (
     <Box fill align="center" justify="center">
       <Box align="center" width="large" pad="smalls">
-        <NameValueList
-          pairProps={{ direction: 'column' }}        
-        >
+        <NameValueList pairProps={{ direction: 'column' }}>
           <NameValuePair name="Toast Position">
             <RadioButtonGroup
               name="position"
@@ -161,7 +169,8 @@ const Default = () => {
             />
           </NameValuePair>
         </NameValueList>
-        <Button label="Show Toast" onClick={handleClick} /> <Button label="Close Latest" onClick={toastRef.current?.close}/>
+        <Button label="Show Toast" onClick={handleClick} />{' '}
+        <Button label="Close Latest" onClick={toastRef.current?.close} />
       </Box>
     </Box>
   );

@@ -59,6 +59,7 @@ const ToastContainer: React.FC<React.PropsWithChildren<unknown>> = () => {
           key:`position-${position}`,
           position,
           direction,
+          className:'toast-container'
         },
         toastElements
       );
