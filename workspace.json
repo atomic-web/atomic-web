@@ -1,6 +1,8 @@
 {
   "version": 2,
   "projects": {
+    "admin": "packages/admin",
+    "admin-e2e": "packages/admin-e2e",
     "ui": "packages/ui",
     "ui-e2e": "packages/ui-e2e"
   }
