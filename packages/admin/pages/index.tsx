@@ -1,15 +1,10 @@
+import useTranslation from 'next-translate/useTranslation';
+import { Layout } from '../components/layout';
 
 export function Index() {
-  /*
-   * Replace the elements below with your own.
-   *
-   * Note: The corresponding styles are in the ./index.styled-components file.
-   */
-  return (
-    <div>
-     Welcome To Atomic Web Admin
-    </div>
-  );
+  const { t } = useTranslation('theme');
+
+  return <Layout>{t('app-msg-welcome')}</Layout>;
 }
 
 export default Index;

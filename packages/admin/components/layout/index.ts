@@ -1,0 +1,1 @@
+export {DefaultLayout as Layout} from './default-layout'
