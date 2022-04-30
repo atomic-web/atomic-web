@@ -1,4 +1,8 @@
 {
     "app-title" : "Atomic Admin",
-    "app-msg-welcome" : "Welcome To Atomic Web Admin"
+    "app-msg-welcome" : "Welcome To Atomic Web Admin",
+    "user-menu-item-pref" : "Preference",
+    "user-menu-item-profile" : "User Profile",
+    "user-menu-item-change-pass" : "Change Password",
+    "user-menu-item-logout" : "Logout"
 }
