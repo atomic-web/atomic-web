@@ -5,5 +5,6 @@
     "user-menu-item-profile" : "User Profile",
     "user-menu-item-change-pass" : "Change Password",
     "user-menu-item-logout" : "Logout",
-    "options-dir" : "Direction"
+    "options-theme-dir" : "Direction",
+    "options-theme-mode" : "Theme Mode"
 }

@@ -1,4 +1,4 @@
-import { Box } from "grommet";
+import { Box } from 'grommet';
 
 export const RadioOption = (option, { checked, focus, hover }, icon) => {
   const Icon = icon(option);
@@ -7,7 +7,9 @@ export const RadioOption = (option, { checked, focus, hover }, icon) => {
   else if (hover) background = 'light-4';
   else if (focus) background = 'light-4';
   else background = 'light-2';
-  return <Box background={background} pad="xsmall">
-      <Icon/>
-  </Box>;
+  return (
+    <Box background={background} pad="xsmall" round="full">
+      <Icon />
+    </Box>
+  );
 };

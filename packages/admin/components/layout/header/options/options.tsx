@@ -4,6 +4,7 @@ import { AtomicThemeType } from '../../../../themes/atomic-theme';
 import React, { useContext, useState } from 'react';
 import { DirOption } from './dir-option';
 import useTranslation from 'next-translate/useTranslation';
+import { ColorOption } from './color-option';
 
 export interface OptionItem {
   title: React.ReactNode | string;
@@ -43,7 +44,7 @@ const Options: React.FC<unknown> = () => {
           <List
             primaryKey="title"
             secondaryKey="editor"
-            data={[DirOption(t)]}
+            data={[DirOption(t), ColorOption(t)]}
           />
         </Layer>
       )}

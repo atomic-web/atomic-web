@@ -13,10 +13,10 @@ export interface DefaulLayoutProps extends LayoutProps {}
 
 const DefaultLayout = (props) => {
   const { children } = props;
-  const { themeDir } = useApplication();
+  const { themeDir, themeMode } = useApplication();
 
   return (
-    <Grommet full theme={atomicTheme} dir={themeDir}>
+    <Grommet full theme={atomicTheme} dir={themeDir} themeMode={themeMode}>
       <Box direction="row" fill>
         <SideBar />
         <Box flex>

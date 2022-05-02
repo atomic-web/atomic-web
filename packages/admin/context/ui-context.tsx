@@ -1,18 +1,23 @@
 import { createContext, useState } from 'react';
 
 export type SideBarState = 'min' | 'max';
+export type ThemeMode = 'dark' | 'light';
 
 export interface UIContextValue {
   toggleSideBar: () => void;
   sideBarState: SideBarState;
   toggleThemeDir: () => void;
   themeDir?: 'rtl' | undefined;
+  setThemeMode: (mode: ThemeMode) => void;
+  themeMode?: ThemeMode;
 }
 
 const defaultUIContext: UIContextValue = {
   toggleSideBar: () => 0,
   toggleThemeDir: () => 0,
   sideBarState: 'max',
+  themeMode: 'light',
+  setThemeMode: () => 0,
 };
 
 const UIContext = createContext<UIContextValue>(defaultUIContext);
@@ -28,6 +33,9 @@ const UIContextProvider = (props) => {
   );
 
   const [themeDir, setThemeDir] = useState<'rtl' | undefined>();
+  const [themeMode, setThemeMode] = useState<ThemeMode>(
+    defaultUIContext.themeMode
+  );
 
   const toggleSideBar = () => {
     updateSideBarState((currentState) =>
@@ -41,7 +49,14 @@ const UIContextProvider = (props) => {
 
   return (
     <UIContext.Provider
-      value={{ toggleSideBar, sideBarState, themeDir, toggleThemeDir }}
+      value={{
+        toggleSideBar,
+        sideBarState,
+        themeDir,
+        toggleThemeDir,
+        themeMode,
+        setThemeMode,
+      }}
     >
       {children}
     </UIContext.Provider>

@@ -31,6 +31,6 @@ const DirEditor: React.FC<unknown> = () => {
 };
 
 export const DirOption = (t: Translate): OptionItem => ({
-  title: t('options-dir'),
+  title: t('options-theme-dir'),
   editor: <DirEditor />,
 });
