@@ -1,5 +1,5 @@
 import { Box, Drop, Text } from 'grommet';
-import styled, {  } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { ColorType } from 'grommet/utils';
 //@ts-ignore
 import { backgroundAndTextColors } from 'grommet/utils/background';
@@ -8,6 +8,26 @@ import { backgroundAndTextColors } from 'grommet/utils/background';
 export const StyledSideNav = styled(Box)`
   transition:width 0.3s ease-in-out;
 `;
+
+const maxAnimation = keyframes`
+   from {
+      justify-content:center;
+   }
+
+   to {
+     justify-content:flex-start;     
+   }
+`
+
+const minAnimation = keyframes`
+   from {
+      justify-content:flex-start;
+   }
+
+   to {
+     justify-content:center;     
+   }
+`
 
 export const StyledSideNavItem = styled(Box).attrs({
   flex: false,
@@ -24,6 +44,9 @@ export const StyledSideNavItem = styled(Box).attrs({
   ${({ plain, level, mini }) =>
     !plain && !mini && `padding-inline-start: ${level}rem;`}
   user-select: none;
+  animation : ${(props)=>props.mini ? minAnimation : maxAnimation};
+  animation-fill-mode :forwards;
+  animation-duration:0.3s;
 `;
 export const StyledSideNavHeader = styled(Box).attrs({
   align: 'center',
