@@ -13,11 +13,10 @@ const ApplicationProvider = (props) => {
 };
 
 const useApplication = (): UseApplicationReturn => {
-  const { toggleSideBar, sideBarState } = useContext(UIContext);
+  const uiContext = useContext(UIContext);
 
   return {
-    toggleSideBar,
-    sideBarState,
+    ...uiContext,
   };
 };
 

@@ -5,10 +5,13 @@ export type SideBarState = 'min' | 'max';
 export interface UIContextValue {
   toggleSideBar: () => void;
   sideBarState: SideBarState;
+  toggleThemeDir: () => void;
+  themeDir?: 'rtl' | undefined;
 }
 
 const defaultUIContext: UIContextValue = {
   toggleSideBar: () => 0,
+  toggleThemeDir: () => 0,
   sideBarState: 'max',
 };
 
@@ -24,14 +27,22 @@ const UIContextProvider = (props) => {
     defaultUIContext.sideBarState
   );
 
+  const [themeDir, setThemeDir] = useState<'rtl' | undefined>();
+
   const toggleSideBar = () => {
     updateSideBarState((currentState) =>
       currentState === 'max' ? 'min' : 'max'
     );
   };
 
+  const toggleThemeDir = () => {
+    setThemeDir((dir) => (!dir ? 'rtl' : undefined));
+  };
+
   return (
-    <UIContext.Provider value={{ toggleSideBar, sideBarState }}>
+    <UIContext.Provider
+      value={{ toggleSideBar, sideBarState, themeDir, toggleThemeDir }}
+    >
       {children}
     </UIContext.Provider>
   );

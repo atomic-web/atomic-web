@@ -2,7 +2,7 @@ import { Box, Grommet, Main } from 'grommet';
 import { Header } from './header';
 import { SideBar } from './sidebar';
 import { atomicTheme } from '../../themes';
-import { ApplicationProvider } from '../../context';
+import { ApplicationProvider, useApplication } from '../../context';
 
 export interface LayoutProps {
   children: React.ReactChild;
@@ -13,22 +13,27 @@ export interface DefaulLayoutProps extends LayoutProps {}
 
 const DefaultLayout = (props) => {
   const { children } = props;
+  const { themeDir } = useApplication();
 
   return (
-    <Grommet full theme={atomicTheme}>
-      <ApplicationProvider>
-        <Box direction="row" fill>
-          <SideBar />
-          <Box flex>
-            <Header />
-            <Main background="background-back" pad="medium">
-              {children}
-            </Main>
-          </Box>
+    <Grommet full theme={atomicTheme} dir={themeDir}>
+      <Box direction="row" fill>
+        <SideBar />
+        <Box flex>
+          <Header />
+          <Main background="background-back" pad="medium">
+            {children}
+          </Main>
         </Box>
-      </ApplicationProvider>
+      </Box>
     </Grommet>
   );
 };
 
-export { DefaultLayout };
+const LayoutWithAppProvider = () => (
+  <ApplicationProvider>
+    <DefaultLayout />
+  </ApplicationProvider>
+);
+
+export { LayoutWithAppProvider as DefaultLayout };

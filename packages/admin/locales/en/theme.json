@@ -4,5 +4,6 @@
     "user-menu-item-pref" : "Preference",
     "user-menu-item-profile" : "User Profile",
     "user-menu-item-change-pass" : "Change Password",
-    "user-menu-item-logout" : "Logout"
+    "user-menu-item-logout" : "Logout",
+    "options-dir" : "Direction"
 }

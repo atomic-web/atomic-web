@@ -1,4 +1,5 @@
 import { Box, Header as GrommetHeader } from 'grommet';
+import { Options } from './options/options';
 import { SideBarToggle } from './sidebar-toggle';
 import { UserMenu } from './user-menu';
 
@@ -14,11 +15,12 @@ const Header: React.FC<HeaderProps> = (props) => {
       pad="small"
       direction="row-reverse"
     >
-      <Box>
+      <Box direction="row">
         <UserMenu />
+        <Options />
       </Box>
       <Box>
-         <SideBarToggle/>
+        <SideBarToggle />
       </Box>
     </GrommetHeader>
   );
