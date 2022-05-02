@@ -1,6 +1,11 @@
 import { Box, Heading } from 'grommet';
 import { Grommet as GrommetIcon } from 'grommet-icons';
 import useTranslation from 'next-translate/useTranslation';
+import styled from 'styled-components';
+
+const StyledHeading = styled(Heading)`
+  white-space: nowrap;
+`;
 
 const Branding: React.FC<unknown> = () => {
   const { t } = useTranslation('theme');
@@ -8,9 +13,9 @@ const Branding: React.FC<unknown> = () => {
   return (
     <Box direction="row" align="center">
       <GrommetIcon size="large" />
-      <Heading margin={{ start: 'small', vertical: 'xsmall' }} level="3">
+      <StyledHeading margin={{ start: 'small', vertical: 'xsmall' }} level="3">
         {t('app-title')}{' '}
-      </Heading>
+      </StyledHeading>
     </Box>
   );
 };
