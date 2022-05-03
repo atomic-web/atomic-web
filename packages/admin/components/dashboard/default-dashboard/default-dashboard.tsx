@@ -1,5 +1,5 @@
 import { Box } from 'grommet';
-import { Tiles } from './tiles';
+import { Tiles } from '../shared/tiles';
 
 const DefaultDashboard: React.FC<unknown> = () => {
   return <Box>
