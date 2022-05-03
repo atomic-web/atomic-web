@@ -1,10 +1,11 @@
-import useTranslation from 'next-translate/useTranslation';
+import { DefaultDashboard } from '../components/dashboard';
 import { Layout } from '../components/layout';
 
 export function Index() {
-  const { t } = useTranslation('theme');
 
-  return <Layout>{t('app-msg-welcome')}</Layout>;
+  return <Layout>
+      <DefaultDashboard/>
+    </Layout>;
 }
 
 export default Index;

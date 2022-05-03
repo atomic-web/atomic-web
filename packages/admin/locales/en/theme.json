@@ -6,5 +6,17 @@
     "user-menu-item-change-pass" : "Change Password",
     "user-menu-item-logout" : "Logout",
     "options-theme-dir" : "Direction",
-    "options-theme-mode" : "Theme Mode"
+    "options-theme-mode" : "Theme Mode",
+    "dashboard-tile-title-system" :"System",
+    "dashboard-tile-subtitle-system" :"Sub-system and Devices",
+    "dashboard-tile-msg-system" :"Composable System",
+    "dashboard-tile-title-logs" :"Logs",
+    "dashboard-tile-subtitle-logs" :"Events, Integration, and Status",
+    "dashboard-tile-msg-logs" :"204,353",
+    "dashboard-tile-title-beacons" :"Beacons",
+    "dashboard-tile-subtitle-beacons" :"Uniqe identification light",
+    "dashboard-tile-msg-beacons" :"24 beacons connected",
+    "dashboard-tile-title-security" :"Security",
+    "dashboard-tile-subtitle-security" :"Trusted Platform Module",
+    "dashboard-tile-msg-security" :"No Module Connected"
 }
