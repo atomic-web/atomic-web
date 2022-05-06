@@ -9,7 +9,12 @@ export interface AtomicThemeType extends ThemeType {
 const atomicTheme: AtomicThemeType = deepMerge(grommet, {
   defaultMode: 'light',
   global :{
-      colors 
+    colors   
+  },
+  card : {
+    container :{
+      round:'xsmall'
+    }
   }
 });
 
