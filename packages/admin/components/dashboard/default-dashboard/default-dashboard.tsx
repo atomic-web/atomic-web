@@ -1,16 +1,26 @@
-import { Box, Grid } from 'grommet';
-import { SalesChart } from '../shared/statistics';
+import { Box, Grid, ResponsiveContext } from 'grommet';
+import { isMediumUp } from '../../../utils/types/responsive-utils';
+import { BrowserUsageChart } from '../shared/browser-usage-chart';
+import { SalesChart } from '../shared/sales-chart';
 import { Tiles } from '../shared/tiles';
 
 const DefaultDashboard: React.FC<unknown> = () => {
   return (
-    <Box>
-      <Tiles />
-      <Grid columns={['2fr' , '1fr']} gap="small">
-        <SalesChart />
-         
-      </Grid>
-    </Box>
+    <ResponsiveContext.Consumer>
+      {(size) => (
+        <Box>
+          <Tiles />
+          <Grid
+            columns={isMediumUp(size) ? ['2fr' ,'1fr'] : ['full']}
+            gap="small"
+            margin={{ vertical: 'small' }}
+          >
+            <SalesChart />
+            <BrowserUsageChart />
+          </Grid>
+        </Box>
+      )}
+    </ResponsiveContext.Consumer>
   );
 };
 

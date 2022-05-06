@@ -15,7 +15,6 @@ const salesData = Array(12)
 const SalesChart: React.FC<unknown> = () => {
   return (
     <Widget
-      margin={{ vertical: 'small' }}
       header={{
         content: <Box>Sales Report</Box>,
       }}
