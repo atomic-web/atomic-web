@@ -21,7 +21,7 @@ const UserMenu: React.FC<unknown> = () => {
       icon: <System />,
     },
     {
-      label: t('user-menu-item-pref'),
+      label: t('user-menu-item-profile'),
       icon: <UserSettings />,
     },
     {

@@ -12,8 +12,8 @@ const DefaultDashboard: React.FC<unknown> = () => {
           <Tiles />
           <Grid
             columns={isMediumUp(size) ? ['2fr' ,'1fr'] : ['full']}
-            gap="small"
-            margin={{ vertical: 'small' }}
+            gap="medium"
+            margin={{ vertical: 'medium' }}
           >
             <SalesChart />
             <BrowserUsageChart />
