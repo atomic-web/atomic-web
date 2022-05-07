@@ -3,6 +3,7 @@ import { isMediumUp } from '../../../utils/types/responsive-utils';
 import { BrowserUsageChart } from '../shared/browser-usage-chart';
 import { SalesChart } from '../shared/sales-chart';
 import { Tiles } from '../shared/tiles';
+import { Projects } from './projects';
 
 const DefaultDashboard: React.FC<unknown> = () => {
   return (
@@ -17,6 +18,9 @@ const DefaultDashboard: React.FC<unknown> = () => {
           >
             <SalesChart />
             <BrowserUsageChart />
+          </Grid>
+          <Grid columns={isMediumUp(size) ? ['1fr' ,'1fr'] : ['full']}>
+              <Projects/>
           </Grid>
         </Box>
       )}

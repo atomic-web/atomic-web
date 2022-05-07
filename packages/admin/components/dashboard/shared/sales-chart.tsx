@@ -1,6 +1,7 @@
-import { Box, DataChart } from 'grommet';
+import { Box, DataChart, Text } from 'grommet';
 import { Widget } from './widget';
 import random from 'lodash/random';
+import { LineChart } from 'grommet-icons';
 
 const salesData = Array(12)
   .fill(0)
@@ -16,7 +17,8 @@ const SalesChart: React.FC<unknown> = () => {
   return (
     <Widget
       header={{
-        content: <Box>Sales Report</Box>,
+        icon : <LineChart />,
+        title: 'Sales Report',
       }}
       background="background-front"
     >
@@ -24,12 +26,15 @@ const SalesChart: React.FC<unknown> = () => {
         pad={{ horizontal: 'small' }}
         size={{ width: 'fill' }}
         data={salesData}
-        series={[{
-            property : 'month',
-        }, {
-            property :'sales',
-            suffix:"$"
-        }]}
+        series={[
+          {
+            property: 'month',
+          },
+          {
+            property: 'sales',
+            suffix: '$',
+          },
+        ]}
         chart={[
           {
             property: 'sales',

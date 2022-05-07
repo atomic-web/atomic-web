@@ -1,4 +1,5 @@
 import { Box, Meter, NameValueList, NameValuePair, Text } from 'grommet';
+import { Chrome } from 'grommet-icons';
 import styled from 'styled-components';
 import { Widget } from './widget';
 
@@ -33,7 +34,13 @@ const BrowserUsageChart: React.FC<unknown> = () => {
   ];
 
   return (
-    <Widget header="Browser Usage" background="background-front">
+    <Widget
+      header={{
+        icon: <Chrome />,
+        title: 'Browser Usage',
+      }}
+      background="background-front"
+    >
       <Box align="center">
         <Box width="small">
           <Meter type="pie" values={values} size="full" />

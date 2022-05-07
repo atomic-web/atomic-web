@@ -4,10 +4,12 @@ import {
   Card as GrommetCard,
   CardBody,
   CardHeader,
+  Heading,
   Menu,
 } from 'grommet';
 import { MoreVertical } from 'grommet-icons';
 import { WidthType } from 'grommet/utils';
+import React from 'react';
 
 export interface WidgetAction {
   name: string;
@@ -25,9 +27,10 @@ export interface WidgetActionsProps {
 export type WidgetHeaderType =
   | string
   | {
-      content: React.ReactNode;
+      title: React.ReactNode;
+      icon?: React.ReactNode;
       actions?: WidgetAction[];
-      onAction? : (action:WidgetAction)=>void,
+      onAction?: (action: WidgetAction) => void;
       actionProps?: WidgetActionsProps;
     };
 
@@ -48,8 +51,9 @@ export interface WidgetProps extends BoxProps {
 const Widget: React.FC<WidgetProps> = (props) => {
   const { children, header: headerProp, footer: footerProp, ...rest } = props;
 
-  const header =
-    typeof headerProp === 'string' ? headerProp : headerProp.content;
+  const header = typeof headerProp === 'string' ? headerProp : headerProp.title;
+
+  const icon = typeof headerProp !== 'string' && headerProp.icon;
 
   const headerActions =
     typeof headerProp !== 'string'
@@ -59,8 +63,8 @@ const Widget: React.FC<WidgetProps> = (props) => {
           icon: item.icon,
           _id: item.name,
           onClick: () => {
-             item.onClick?.(item);
-             headerProp.onAction?.(item);
+            item.onClick?.(item);
+            headerProp.onAction?.(item);
           },
         }))
       : undefined;
@@ -71,8 +75,16 @@ const Widget: React.FC<WidgetProps> = (props) => {
   return (
     <GrommetCard pad="small" {...rest}>
       {header && (
-        <CardHeader margin={{bottom : 'medium'}}>
-          <Box>{header}</Box>
+        <CardHeader margin={{ bottom: 'medium' }}>
+          <Box direction="row">
+            {icon}
+            <Heading
+              level="4"
+              margin={{ vertical: '0', start: icon ? 'small' : undefined }}
+            >
+              {header}
+            </Heading>
+          </Box>
           {headerActions && (
             <Box width={headerActionsProps?.width}>
               <Menu icon={<MoreVertical />} items={headerActions} />
