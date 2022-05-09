@@ -28,7 +28,6 @@ const Projects: React.FC<unknown> = () => {
         avatar: faker.internet.avatar(),
       },
     }));
-  console.log(projects);
 
   return (
     <Widget
