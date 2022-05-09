@@ -1,9 +1,9 @@
 import { Box, Grid, ResponsiveContext } from 'grommet';
 import { isMediumUp } from '../../../utils/types/responsive-utils';
-import { BrowserUsageChart } from '../shared/browser-usage-chart';
-import { SalesChart } from '../shared/sales-chart';
+import { BrowserUsageChart } from './browser-usage-chart';
+import { SalesChart } from './sales-chart';
 import { Tiles } from '../shared/tiles';
-import { Projects } from './projects';
+import { Projects } from '../shared/projects';
 
 const DefaultDashboard: React.FC<unknown> = () => {
   return (

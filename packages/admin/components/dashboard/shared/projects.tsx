@@ -1,4 +1,4 @@
-import { Widget } from '../shared/widget';
+import { Widget } from './widget';
 import { faker } from '@faker-js/faker';
 import { Avatar, Box, DataTable, Meter, Text, Tip } from 'grommet';
 import { Briefcase } from 'grommet-icons';

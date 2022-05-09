@@ -1,5 +1,5 @@
 import { Box, DataChart, Text } from 'grommet';
-import { Widget } from './widget';
+import { Widget } from '../shared/widget';
 import random from 'lodash/random';
 import { LineChart } from 'grommet-icons';
 

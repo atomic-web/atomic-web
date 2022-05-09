@@ -1,7 +1,7 @@
 import { Box, Meter, NameValueList, NameValuePair, Text } from 'grommet';
 import { Chrome } from 'grommet-icons';
 import styled from 'styled-components';
-import { Widget } from './widget';
+import { Widget } from '../shared/widget';
 
 const Legend = styled(Box)`
   width: 20px;
