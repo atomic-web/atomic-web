@@ -73,7 +73,7 @@ const Widget: React.FC<WidgetProps> = (props) => {
     typeof headerProp !== 'string' ? headerProp.actionProps : undefined;
 
   return (
-    <GrommetCard pad="small" {...rest}>
+    <GrommetCard pad="small" {...rest} responsive={false}>
       {header && (
         <CardHeader margin={{ bottom: 'medium' }}>
           <Box direction="row">
