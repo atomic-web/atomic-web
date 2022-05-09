@@ -8,7 +8,7 @@
   },
   "private": true,
   "dependencies": {
-    "@faker-js/faker": "^6.3.1",
+    "@ngneat/falso": "^5.2.1",
     "@nrwl/next": "14.0.5",
     "core-js": "^3.6.5",
     "grommet": "^2.23.0",

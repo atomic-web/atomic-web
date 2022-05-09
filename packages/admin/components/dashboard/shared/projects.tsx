@@ -1,5 +1,5 @@
 import { Widget } from './widget';
-import { faker } from '@faker-js/faker';
+import { randFullName, randJobArea ,randNumber } from '@ngneat/falso';
 import { Avatar, Box, DataTable, Meter, Text, Tip } from 'grommet';
 import { Briefcase } from 'grommet-icons';
 
@@ -17,15 +17,12 @@ const Projects: React.FC<unknown> = () => {
     .fill(0)
     .map((_, index) => ({
       id: index,
-      name: faker.name.jobArea(),
-      priority: faker.datatype.number({
-        min: 0,
-        max: 3,
-      }),
+      name: randJobArea(),
+      priority: randNumber({min : 0 , max:3}),
       progress: parseInt((Math.random() * 100).toFixed(0)),
       assigne: {
-        name: `${faker.name.firstName()} ${faker.name.lastName()}`,
-        avatar: faker.internet.avatar(),
+        name: randFullName(),
+        avatar: `/images/avatars/av${index+1}.png`,
       },
     }));
 
@@ -64,7 +61,7 @@ const Projects: React.FC<unknown> = () => {
             header: 'Assigne',
             render: ({ assigne: { name, avatar } }) => (
               <Box direction="row" align="center">
-                <Avatar src={avatar} margin={{ end: 'small' }} />
+                <Avatar src={avatar} margin={{ end: 'small' }}/>
                 <Text>{name} </Text>
               </Box>
             ),
