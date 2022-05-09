@@ -2,3 +2,4 @@
 . "$(dirname "$0")/_/husky.sh"
 
 npx nx run lint
+npx nx run type-check
