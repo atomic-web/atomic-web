@@ -1,4 +1,4 @@
-import { Box, ThemeContext } from 'grommet';
+import { Box, ThemeContext} from 'grommet';
 import {
   AlignSelfType,
   BorderType,

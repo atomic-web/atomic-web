@@ -3,6 +3,9 @@
   "sourceRoot": "packages/ui-e2e/src",
   "projectType": "application",
   "targets": {
+    "type-check" :{
+      "executor" : "./tools/executors/tsCheck:tsCheck"
+    },
     "e2e": {
       "executor": "@nrwl/cypress:cypress",
       "options": {

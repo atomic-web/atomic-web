@@ -3,6 +3,9 @@
   "sourceRoot": "packages/admin",
   "projectType": "application",
   "targets": {
+    "type-check" :{
+      "executor" : "./tools/executors/tsCheck:tsCheck"
+    },
     "build": {
       "executor": "@nrwl/next:build",
       "outputs": ["{options.outputPath}"],

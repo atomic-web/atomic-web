@@ -4,6 +4,9 @@
   "projectType": "library",
   "tags": [],
   "targets": {
+    "type-check" :{
+      "executor" : "./tools/executors/tsCheck:tsCheck"
+    },
     "build": {
       "executor": "@nrwl/web:rollup",
       "outputs": ["{options.outputPath}"],
