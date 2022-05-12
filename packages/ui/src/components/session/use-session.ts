@@ -7,10 +7,9 @@ import {
 
 export type SessionActions = Omit<SessionContextValue, 'session'>;
 
-export interface UseSessionOptions {}
-export type UseSessionReturn = [SessionInfo, SessionActions];
+export type UseSessionReturn = [SessionInfo | undefined, SessionActions];
 
-export const useSession = (options: UseSessionOptions): UseSessionReturn => {
+export const useSession = (): UseSessionReturn => {
   const { session, signOut, update, fetchSession } = useContext(SessionContext);
 
   return [session, { signOut, update, fetchSession }];

@@ -1,23 +1,24 @@
 name: publish
 on:
   push:
-      tags:
+    tags:
       - v*.*.*
-  workflow_dispatch :  
-  
+  workflow_dispatch:
+
 jobs:
   build:
-    runs-on: ubuntu-latest   
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: yarn 
-    - run: npx nx build
-    - run: npx nx affected --target=build --parallel=3
-    - run: cd dist/packages/ui
-    - uses: JS-DevTools/npm-publish@v1
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn
+      - run: npx nx build
+      - run: npx nx affected --target=build --parallel=3
+      - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
+          package: ./dist/packages/ui/package.json
+
