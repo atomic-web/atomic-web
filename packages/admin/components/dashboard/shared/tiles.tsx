@@ -60,7 +60,7 @@ const Tiles: React.FC<unknown> = () => {
       {data.map((value) => (
         <Tile
           background={value.color}
-          key={`Tile ${value}`}
+          key={`Tile${value.title}`}
           alignContent="center"
           responsive={false}
         >
