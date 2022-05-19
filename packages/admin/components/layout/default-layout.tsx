@@ -1,8 +1,7 @@
-import { Box, Grommet, Main } from 'grommet';
+import { Box, Main } from 'grommet';
 import { Header } from './header';
 import { SideBar } from './sidebar';
-import { atomicTheme } from '../../themes';
-import { ApplicationProvider, useApplication } from '../../context';
+import { ApplicationProvider } from '../../context';
 import styled from 'styled-components';
 
 export interface LayoutProps {
@@ -18,10 +17,8 @@ export interface DefaulLayoutProps extends LayoutProps {}
 
 const DefaultLayout = (props) => {
   const { children } = props;
-  const { themeDir, themeMode } = useApplication();
 
   return (
-    <Grommet full theme={atomicTheme} dir={themeDir} themeMode={themeMode}>
       <Box direction="row" fill>
         <SideBar />
         <Body flex>
@@ -35,7 +32,6 @@ const DefaultLayout = (props) => {
           </Box>
         </Body>
       </Box>
-    </Grommet>
   );
 };
 

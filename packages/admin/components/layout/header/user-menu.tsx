@@ -1,4 +1,4 @@
-import { Avatar, Box, ButtonProps, Menu, ThemeContext } from 'grommet';
+import { Avatar, Box, ButtonProps, Menu, Spinner, ThemeContext } from 'grommet';
 import {
   FormDown,
   Gremlin,
@@ -10,10 +10,14 @@ import {
 import { AtomicThemeType } from '../../../themes/atomic-theme';
 import { useContext } from 'react';
 import useTranslation from 'next-translate/useTranslation';
+import { Session } from '@atomic-web/UI';
+import { useAuth } from '../../auth/use-auth';
+import { useRouter } from 'next/router';
 
 const UserMenu: React.FC<unknown> = () => {
-
-  const {t} = useTranslation('theme');  
+  const { t } = useTranslation('theme');
+  const { signOut } = useAuth();
+  const router = useRouter();
 
   const menuItems: ButtonProps[] = [
     {
@@ -31,6 +35,10 @@ const UserMenu: React.FC<unknown> = () => {
     {
       label: t('user-menu-item-logout'),
       icon: <Logout />,
+      onClick: () =>
+        signOut().then(
+          (success) => success && router.push(process.env.NEXT_PUBLIC_LOGIN_URL)
+        ),
     },
   ].map((item) => ({
     label: (
@@ -39,6 +47,7 @@ const UserMenu: React.FC<unknown> = () => {
       </Box>
     ),
     icon: <Box pad="small"> {item.icon} </Box>,
+    ...item,
   }));
 
   const { dir }: AtomicThemeType = useContext(ThemeContext);
@@ -54,12 +63,20 @@ const UserMenu: React.FC<unknown> = () => {
         [!dir ? 'right' : 'left']: !dir ? 'right' : 'left',
       }}
     >
-      <Box direction="row" align="center">
-        <FormDown />
-        <Avatar background="background-back" margin={{ horizontal: 'small' }}>
-          <Gremlin />
-        </Avatar>
-      </Box>
+      <Session fallback={<Spinner />}>
+        {(session) => (
+          <Box direction="row" align="center">
+            <FormDown />
+            <Avatar
+              background="background-back"
+              margin={{ horizontal: 'small' }}
+            >
+              <Gremlin />
+              {session.userName}
+            </Avatar>
+          </Box>
+        )}
+      </Session>
     </Menu>
   );
 };
