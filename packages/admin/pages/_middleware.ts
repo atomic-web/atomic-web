@@ -1,8 +1,8 @@
 import { NextRequest } from 'next/server';
-import jwt from 'jsonwebtoken';
-import { jwtSecretKey } from './api/auth/signin';
+import {jwtVerify} from 'jose';
+import { JWT_SECRET } from './api/auth/signin';
 
-const verifyJwtToken = (req: NextRequest) => {
+const verifyJwtToken = async(req: NextRequest) => {
 
   const authorization = req.headers.get('authorization');
 
@@ -15,9 +15,9 @@ const verifyJwtToken = (req: NextRequest) => {
   if (!token) {
     return false;
   }
-  const result = jwt.verify(token, jwtSecretKey);
+  const {payload} = await jwtVerify(token, JWT_SECRET);
 
-  if (!result) {
+  if (!payload) {
     return false;
   }
   return true;
