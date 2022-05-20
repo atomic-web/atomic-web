@@ -1,5 +1,6 @@
 import { SessionInfo, SessionProvider } from '@atomic-web/UI';
 import { useRouter } from 'next/router';
+import { isBrowserEnv } from '../../utils/misc/is-browser-env';
 import { axiosInstance } from '../http';
 import noneAuthPages from './none-auth-pages';
 import { useAuth } from './use-auth';
@@ -32,14 +33,16 @@ const AuthLayer = (props) => {
 
       return resp.data;
     } catch (ex) {
-      router.push(process.env.NEXT_PUBLIC_LOGIN_URL);
+      if (isBrowserEnv()){
+        router.push(process.env.NEXT_PUBLIC_LOGIN_URL);
+      }
       return;
     }
   };
 
   if (!isAuthenticated) {
     signIn().then((success) => {
-      if (!success) {
+      if (!success && isBrowserEnv()) {
         router.push(process.env.NEXT_PUBLIC_LOGIN_URL);
       }
     });
