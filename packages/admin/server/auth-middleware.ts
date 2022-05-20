@@ -1,10 +1,10 @@
-import { NextRequest } from 'next/server';
 import {jwtVerify} from 'jose';
-import { JWT_SECRET } from './api/auth/signin';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { JWT_SECRET } from '../pages/api/auth/signin';
 
-const verifyJwtToken = async(req: NextRequest) => {
+const verifyJwtToken = async(req: NextApiRequest) => {
 
-  const authorization = req.headers.get('authorization');
+  const authorization = req.headers['authorization'];
 
   if (!authorization || typeof authorization !== 'string') {
     return false;
@@ -25,15 +25,15 @@ const verifyJwtToken = async(req: NextRequest) => {
 
 const noneAuthPaths = ['/api/auth/signin', '/api/auth/refresh'];
 
-export function middleware(req: NextRequest) {
+export function authMiddleware(req: NextApiRequest , resp : NextApiResponse) {
   
-  const pathName = req.nextUrl.pathname;
+  const pathName = req.url;
   
   if (!pathName.startsWith('/api') || noneAuthPaths.includes(pathName)) {
     return;
   }
   
   if (!verifyJwtToken(req)) {
-    return new Response(null, { status: 401 });
+    resp.status(401).send(null);
   }
 }
