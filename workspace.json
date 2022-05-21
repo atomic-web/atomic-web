@@ -3,7 +3,7 @@
   "projects": {
     "admin": "packages/admin",
     "admin-e2e": "packages/admin-e2e",
-    "ui": "packages/ui",
-    "ui-e2e": "packages/ui-e2e"
+    "ui-core": "packages/ui-core",
+    "ui-core-e2e": "packages/ui-core-e2e"
   }
 }

@@ -8,7 +8,7 @@ import {
   Stack,
   ThemeContext,
 } from 'grommet';
-import { SideNav, StyledSideNavItem } from '@atomic-web/UI';
+import { SideNav, StyledSideNavItem } from '@atomic-web/ui-core';
 import styled from 'styled-components';
 import { menuItems } from './side-nav-items';
 import { Gremlin, Logout, FormPreviousLink, FormNextLink } from 'grommet-icons';

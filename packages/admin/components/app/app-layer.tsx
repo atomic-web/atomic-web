@@ -2,7 +2,7 @@ import { Grommet } from 'grommet';
 import { useApplication } from '../../../admin/context';
 import { atomicTheme } from '../../themes';
 import { FormBuilderContextProvider } from 'styled-hook-form';
-import { UIProvider } from '@atomic-web/UI';
+import { UIProvider } from '@atomic-web/ui-core';
 
 const AppLayer = ({ children }) => {
   const { themeDir, themeMode } = useApplication();

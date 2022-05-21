@@ -20,4 +20,4 @@ jobs:
         with:
           # 👇 Chromatic projectToken, refer to the manage page to obtain it.
           projectToken: ${{ secrets.UI_CHROMATIC_PROJECT_TOKEN }}
-          buildScriptName : build-storybook:ui
+          buildScriptName : build-storybook:ui-core

@@ -1,6 +1,6 @@
 {
-  "root": "packages/ui",
-  "sourceRoot": "packages/ui/src",
+  "root": "packages/ui-core",
+  "sourceRoot": "packages/ui-core/src",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -11,16 +11,16 @@
       "executor": "@nrwl/web:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/ui",
-        "tsConfig": "packages/ui/tsconfig.lib.json",
-        "project": "packages/ui/package.json",
-        "entryFile": "packages/ui/src/index.ts",
+        "outputPath": "dist/packages/ui-core",
+        "tsConfig": "packages/ui-core/tsconfig.lib.json",
+        "project": "packages/ui-core/package.json",
+        "entryFile": "packages/ui-core/src/index.ts",
         "external": ["react/jsx-runtime"],
         "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
         "compiler": "babel",
         "assets": [
           {
-            "glob": "packages/ui/README.md",
+            "glob": "packages/ui-core/README.md",
             "input": ".",
             "output": "."
           }
@@ -31,14 +31,14 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["packages/ui/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["packages/ui-core/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/ui"],
+      "outputs": ["coverage/packages/ui-core"],
       "options": {
-        "jestConfig": "packages/ui/jest.config.js",
+        "jestConfig": "packages/ui-core/jest.config.js",
         "passWithNoTests": true
       }
     },
@@ -48,7 +48,7 @@
         "uiFramework": "@storybook/react",
         "port": 4400,
         "config": {
-          "configFolder": "packages/ui/.storybook"
+          "configFolder": "packages/ui-core/.storybook"
         }
       },
       "configurations": {
@@ -62,9 +62,9 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "uiFramework": "@storybook/react",
-        "outputPath": "dist/storybook/ui",
+        "outputPath": "dist/storybook/ui-core",
         "config": {
-          "configFolder": "packages/ui/.storybook"
+          "configFolder": "packages/ui-core/.storybook"
         }
       },
       "configurations": {

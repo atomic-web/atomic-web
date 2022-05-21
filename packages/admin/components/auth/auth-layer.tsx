@@ -1,4 +1,4 @@
-import { SessionInfo, SessionProvider } from '@atomic-web/UI';
+import { SessionInfo, SessionProvider } from '@atomic-web/ui-core';
 import { useRouter } from 'next/router';
 import { isBrowserEnv } from '../../utils/misc/is-browser-env';
 import { axiosInstance } from '../http';

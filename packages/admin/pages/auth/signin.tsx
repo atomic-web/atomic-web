@@ -3,7 +3,7 @@ import { FieldView, FormBuilder, FormFieldType } from 'styled-hook-form';
 import { Button, Card } from 'grommet';
 import { useAuth } from '../../components/auth/use-auth';
 import { useRouter } from 'next/router';
-import { useToast } from '@atomic-web/UI';
+import { useToast } from '@atomic-web/ui-core';
 
 interface UserPass {
   username: string;

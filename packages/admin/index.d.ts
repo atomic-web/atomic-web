@@ -1,4 +1,4 @@
-import '@atomic-web/UI';
+import '@atomic-web/ui-core';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 declare module '*.svg' {
   const content: any;
@@ -7,7 +7,7 @@ declare module '*.svg' {
 }
 
 
-declare module '@atomic-web/UI'{
+declare module '@atomic-web/ui-core'{
      interface SessionInfo {
        userName : string;
      }

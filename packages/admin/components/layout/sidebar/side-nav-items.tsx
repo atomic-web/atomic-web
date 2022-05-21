@@ -1,4 +1,4 @@
-import { SideNavItemProps } from '@atomic-web/UI';
+import { SideNavItemProps } from '@atomic-web/ui-core';
 import {
   Apps,
   Basket,

@@ -10,7 +10,7 @@ import {
 import { AtomicThemeType } from '../../../themes/atomic-theme';
 import { useContext } from 'react';
 import useTranslation from 'next-translate/useTranslation';
-import { Session } from '@atomic-web/UI';
+import { Session } from '@atomic-web/ui-core';
 import { useAuth } from '../../auth/use-auth';
 import { useRouter } from 'next/router';
 

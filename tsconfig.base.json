@@ -16,7 +16,7 @@
     "noUnusedLocals": true,
     "baseUrl": ".",
     "paths": {
-      "@atomic-web/UI": ["packages/ui/src/index.ts"]
+      "@atomic-web/ui-core": ["packages/ui-core/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

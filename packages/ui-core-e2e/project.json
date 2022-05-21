@@ -9,8 +9,8 @@
     "e2e": {
       "executor": "@nrwl/cypress:cypress",
       "options": {
-        "cypressConfig": "packages/ui-e2e/cypress.json",
-        "devServerTarget": "ui:storybook"
+        "cypressConfig": "packages/ui-core-e2e/cypress.json",
+        "devServerTarget": "ui-core:storybook"
       },
       "configurations": {
         "headed" :{
@@ -18,7 +18,7 @@
           "headed" : true
         },
         "ci": {
-          "devServerTarget": "ui:storybook:ci"
+          "devServerTarget": "ui-core:storybook:ci"
         }
       }
     },
@@ -26,10 +26,10 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["packages/ui-e2e/**/*.{js,ts}"]
+        "lintFilePatterns": ["packages/ui-core-e2e/**/*.{js,ts}"]
       }
     }
   },
   "tags": [],
-  "implicitDependencies": ["ui"]
+  "implicitDependencies": ["ui-core"]
 }
