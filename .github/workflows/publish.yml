@@ -10,15 +10,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn
       - run: npx nx build
-      - run: npx nx affected --target=test --parallel=3
+      - run: npx nx affected --target=test --parallel=3 --all
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
           package: ./dist/packages/ui-core/package.json
+          access: public
 
