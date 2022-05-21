@@ -1,6 +1,6 @@
 {
   "name": "atomic-web",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "license": "MIT",
   "scripts": {
     "build-storybook:ui-core": "echo $npm_config_output-dir &&  nx run ui:build-storybook -- --output-dir $npm_config_output-dir",
