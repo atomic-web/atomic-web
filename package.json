@@ -3,7 +3,7 @@
   "version": "0.2.2",
   "license": "MIT",
   "scripts": {
-    "build-storybook:ui-core": "echo $npm_config_output-dir &&  nx run ui:build-storybook -- --output-dir $npm_config_output-dir",
+    "build-storybook:ui-core": "echo $npm_config_output-dir &&  nx run ui-core:build-storybook -- --output-dir $npm_config_output-dir",
     "chromatic": "chromatic --project-token=$UI_CHROMATIC_PROJECT_TOKEN --build-script-name=build-storybook:ui-core"
   },
   "private": true,
