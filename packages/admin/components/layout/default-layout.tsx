@@ -1,7 +1,6 @@
 import { Box, Main } from 'grommet';
 import { Header } from './header';
 import { SideBar } from './sidebar';
-import { ApplicationProvider } from '../../context';
 import styled from 'styled-components';
 
 export interface LayoutProps {
@@ -33,12 +32,6 @@ const DefaultLayout = (props) => {
         </Body>
       </Box>
   );
-};
+}; 
 
-const LayoutWithAppProvider = ({ children }) => (
-  <ApplicationProvider>
-    <DefaultLayout>{children}</DefaultLayout>
-  </ApplicationProvider>
-);
-
-export { LayoutWithAppProvider as DefaultLayout };
+export { DefaultLayout };

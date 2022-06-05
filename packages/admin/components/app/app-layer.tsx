@@ -3,6 +3,7 @@ import { useApplication } from '../../../admin/context';
 import { atomicTheme } from '../../themes';
 import { FormBuilderContextProvider } from 'styled-hook-form';
 import { UIProvider } from '@atomic-web/ui-core';
+import { ApplicationProvider } from '../../context';
 
 const AppLayer = ({ children }) => {
   const { themeDir, themeMode } = useApplication();
@@ -21,4 +22,10 @@ const AppLayer = ({ children }) => {
   );
 };
 
-export { AppLayer };
+const WithApplicationProvider = ({ children }) => (
+  <ApplicationProvider>
+    <AppLayer>{children}</AppLayer>
+  </ApplicationProvider>
+);
+
+export { WithApplicationProvider as AppLayer };
