@@ -1,10 +1,10 @@
 {
-  "root": "packages/ui-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/ui-e2e/src",
   "projectType": "application",
   "targets": {
-    "type-check" :{
-      "executor" : "./tools/executors/tsCheck:tsCheck"
+    "type-check": {
+      "executor": "./tools/executors/tsCheck:tsCheck"
     },
     "e2e": {
       "executor": "@nrwl/cypress:cypress",
@@ -13,9 +13,9 @@
         "devServerTarget": "ui-core:storybook"
       },
       "configurations": {
-        "headed" :{
-          "watch" : true,
-          "headed" : true
+        "headed": {
+          "watch": true,
+          "headed": true
         },
         "ci": {
           "devServerTarget": "ui-core:storybook:ci"
@@ -24,12 +24,18 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["packages/ui-core-e2e/**/*.{js,ts}"]
+        "lintFilePatterns": [
+          "packages/ui-core-e2e/**/*.{js,ts}"
+        ]
       }
     }
   },
   "tags": [],
-  "implicitDependencies": ["ui-core"]
+  "implicitDependencies": [
+    "ui-core"
+  ]
 }

@@ -1,5 +1,5 @@
 {
-  "extends": "@nrwl/workspace/presets/core.json",
+  "extends": "nx/presets/core.json",
   "npmScope": "atomic-web",
   "affected": {
     "defaultBase": "main"
@@ -28,5 +28,6 @@
       }
     }
   },
-  "defaultProject": "admin"
+  "defaultProject": "admin",
+  "$schema": "./node_modules/nx/schemas/nx-schema.json"
 }

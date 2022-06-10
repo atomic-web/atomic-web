@@ -1,14 +1,16 @@
 {
-  "root": "packages/admin",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/admin",
   "projectType": "application",
   "targets": {
-    "type-check" :{
-      "executor" : "./tools/executors/tsCheck:tsCheck"
+    "type-check": {
+      "executor": "./tools/executors/tsCheck:tsCheck"
     },
     "build": {
       "executor": "@nrwl/next:build",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "root": "packages/admin",
@@ -47,7 +49,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/admin"],
+      "outputs": [
+        "coverage/packages/admin"
+      ],
       "options": {
         "jestConfig": "packages/admin/jest.config.ts",
         "passWithNoTests": true
@@ -55,9 +59,13 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["packages/admin/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "packages/admin/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     }
   },

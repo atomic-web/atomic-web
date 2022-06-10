@@ -1,21 +1,25 @@
 {
-  "root": "packages/ui-core",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/ui-core/src",
   "projectType": "library",
   "tags": [],
   "targets": {
-    "type-check" :{
-      "executor" : "./tools/executors/tsCheck:tsCheck"
+    "type-check": {
+      "executor": "./tools/executors/tsCheck:tsCheck"
     },
     "build": {
       "executor": "@nrwl/web:rollup",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/packages/ui-core",
         "tsConfig": "packages/ui-core/tsconfig.lib.json",
         "project": "packages/ui-core/package.json",
         "entryFile": "packages/ui-core/src/index.ts",
-        "external": ["react/jsx-runtime"],
+        "external": [
+          "react/jsx-runtime"
+        ],
         "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
         "compiler": "babel",
         "assets": [
@@ -29,16 +33,22 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["packages/ui-core/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "packages/ui-core/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/ui-core"],
+      "outputs": [
+        "coverage/packages/ui-core"
+      ],
       "options": {
-        "jestConfig": "packages/ui-core/jest.config.js",
+        "jestConfig": "packages/ui-core/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -59,7 +69,9 @@
     },
     "build-storybook": {
       "executor": "@nrwl/storybook:build",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "uiFramework": "@storybook/react",
         "outputPath": "dist/storybook/ui-core",
